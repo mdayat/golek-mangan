@@ -1,5 +1,5 @@
 ## What
-**Golek Mangan** adalah aplikasi yang menampung dan mengkurasi **restoran terbaik** yang ada di Jawa Timur. Proses memilih, menilai, hingga memasukkan restoran ke dalam daftar **restoran terbaik** dilakukan oleh tim expert kami. Sehingga, dapat dipastikan bahwa desain interior dan cita rasa restoran sudah memenuhi standar kami.
+**Golek Mangan** adalah aplikasi yang menampung dan mengkurasi **restoran terbaik** yang ada di Jawa Timur. Proses memilih, menilai, hingga memasukkan restoran ke dalam daftar **restoran terbaik** dilakukan oleh tim ahli kami. Sehingga, dapat dipastikan bahwa desain interior dan cita rasa restoran sudah memenuhi standar kami.
 
 ## Tech Stack
 1. [TypeScript](https://www.typescriptlang.org/)

@@ -2,3 +2,77 @@
   --source-sans: "Source Sans 3", sans-serif;
   box-sizing: border-box;
 }
+body {
+  font-family: var(--source-sans);
+  background-color: #f4f4f5;
+}
+
+/* Main */
+main {
+  margin: 52px 32px;
+}
+.headline div {
+  max-width: 480px;
+  margin: 24px auto 0;
+}
+.headline-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.headline-description {
+  line-height: normal;
+}
+img {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    margin-left: 56px;
+    margin-right: 56px;
+  }
+  .headline {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    gap: 0 16px;
+  }
+  .headline div {
+    order: 1;
+    margin: 0;
+  }
+  .headline img {
+    order: 2;
+    max-width: 400px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  main {
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+  .headline-title {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .headline-description {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  main {
+    margin-left: 104px;
+    margin-right: 104px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  main {
+    margin-left: 128px;
+    margin-right: 128px;
+  }
+}
