@@ -1,11 +1,8 @@
 ## What
-**Golek Mangan** adalah aplikasi yang menampung dan mengkurasi **restoran terbaik** yang ada di Jawa Timur. Proses memilih, menilai, hingga memasukkan restoran ke dalam daftar **restoran terbaik** dilakukan oleh tim ahli kami. Sehingga, dapat dipastikan bahwa desain interior dan cita rasa restoran sudah memenuhi standar kami.
+**Golek Mangan** is an application that curates the best restaurants in East Java. The process of selecting, assessing, and including a restaurant in the list of the best restaurants is carried out by our expert teams so that it can be ensured that it meets the standards.
 
 ## Tech Stack
-1. [TypeScript](https://www.typescriptlang.org/)
-2. [Webpack](https://webpack.js.org/)
-3. [ESLint](https://eslint.org/)
-4. [Husky](https://typicode.github.io/husky/getting-started.html)
+For development purposes, I chose [TypeScript](https://www.typescriptlang.org/) over JavaScript as the main language because it can save my life from "unwanted" errors. As for the bundler, I chose [Webpack](https://webpack.js.org/) because it is one of the requirements of this project. To keep me in check and follow the best practices, I decided to use [ESLint](https://eslint.org/) along with [Husky](https://typicode.github.io/husky/getting-started.html).
 
 ## More
-- Tujuan dari proyek ini adalah untuk memenuhi [Dicoding Submission](https://www.dicoding.com/academies/219/).
+- The purpose of this project is to fulfill the [Dicoding Submission](https://www.dicoding.com/academies/219/).
