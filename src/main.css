@@ -1,16 +1,73 @@
 * {
   --source-sans: "Source Sans 3", sans-serif;
+  --green: #16a34a;
+  --dark-blue: #101820;
+  --white: #f4f4f5;
   box-sizing: border-box;
 }
 body {
   font-family: var(--source-sans);
-  background-color: #f4f4f5;
+  background-color: var(--white);
+}
+button {
+  cursor: pointer;
 }
 
-/* Header */
+/* Navigation */
+nav {
+  padding: 16px 32px;
+  background-color: var(--dark-blue);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.logo {
+  width: 40px;
+  height: 40px;
+}
+.hamburger-menu {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  fill: var(--white);
+}
+.navigation-menu {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  height: 0;
+}
+.navigation-menu a {
+  font-weight: bold;
+  color: var(--white);
+  display: block;
+  text-decoration: none;
+  padding: 12px 0;
+}
+.navigation-menu a:hover {
+  color: var(--green);
+  transition: color 300ms ease-in-out;
+}
+.open-navigation-menu {
+  transition: all 300ms ease-in-out;
+  margin-top: 24px;
+  opacity: 1;
+  height: fit-content;
+}
+
+/* Hero */
 .hero {
   position: relative;
-  height: 400px;
+  height: calc(400px + 72px);
 }
 .hero img {
   width: 100%;
@@ -34,7 +91,7 @@ body {
   transform: translate(-50%, -50%);
   z-index: 10;
   width: 100%;
-  color: #e4e4e7;
+  color: var(--white);
   font-weight: 700;
   font-size: 32px;
   text-align: center;
@@ -42,7 +99,7 @@ body {
   padding: 0 32px;
 }
 .hero h2 > span {
-  color: #16a34a;
+  color: var(--green);
 }
 
 /* Main */
@@ -68,6 +125,11 @@ img {
 }
 
 @media screen and (min-width: 768px) {
+  nav {
+    padding-left: 56px;
+    padding-right: 56px;
+  }
+
   main {
     margin-left: 56px;
     margin-right: 56px;
@@ -89,6 +151,25 @@ img {
 }
 
 @media screen and (min-width: 1024px) {
+  nav {
+    padding-left: 80px;
+    padding-right: 80px;
+    flex-wrap: nowrap;
+  }
+  .hamburger-menu {
+    display: none;
+  }
+  .navigation-menu {
+    opacity: 1;
+    height: fit-content;
+    flex-direction: row;
+    flex-basis: content;
+  }
+  .navigation-menu a {
+    padding: 12px 16px;
+    font-size: 18px;
+  }
+
   .hero h2 {
     font-size: 36px;
     max-width: 650px;
@@ -108,12 +189,22 @@ img {
 }
 
 @media screen and (min-width: 1280px) {
+  nav {
+    padding-left: 104px;
+    padding-right: 104px;
+  }
+
   main {
     margin-left: 104px;
     margin-right: 104px;
   }
 }
 @media screen and (min-width: 1440px) {
+  nav {
+    padding-left: 128px;
+    padding-right: 128px;
+  }
+
   main {
     margin-left: 128px;
     margin-right: 128px;
