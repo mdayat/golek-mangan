@@ -1,3 +1,7 @@
+interface RestaurantData {
+  restaurants: Restaurant[];
+}
+
 interface Restaurant {
   id: string;
   name: string;
@@ -7,4 +11,4 @@ interface Restaurant {
   rating: number;
 }
 
-export type { Restaurant };
+export type { Restaurant, RestaurantData };
