@@ -1,9 +1,9 @@
 const openMenu = (menu: HTMLUListElement) => {
-  menu.classList.add("open-navigation-menu");
+  menu.classList.add("open-nav-menu");
 };
 
 const closeMenu = (menu: HTMLUListElement) => {
-  menu.classList.remove("open-navigation-menu");
+  menu.classList.remove("open-nav-menu");
 };
 
 const handleClickMenuItem = (event: Event) => {
@@ -33,10 +33,10 @@ const handleClickMenu = (event: Event) => {
   event.stopPropagation();
 
   const menu = document.getElementsByClassName(
-    "navigation-menu"
+    "nav-menu"
   )[0] as HTMLUListElement;
   const menuItems = menu.children;
-  const isMenuOpened = menu.classList.value.includes("open-navigation-menu");
+  const isMenuOpened = menu.classList.value.includes("open-nav-menu");
 
   if (isMenuOpened) {
     closeMenu(menu);
@@ -56,10 +56,10 @@ window.addEventListener("resize", () => {
   if (window.innerWidth < 1024) return;
 
   const menu = document.getElementsByClassName(
-    "navigation-menu"
+    "nav-menu"
   )[0] as HTMLUListElement;
 
-  const isMenuOpened = menu.classList.value.includes("open-navigation-menu");
+  const isMenuOpened = menu.classList.value.includes("open-nav-menu");
   if (isMenuOpened) {
     closeMenu(menu);
     window.removeEventListener("click", handleClickOutside);

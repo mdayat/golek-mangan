@@ -48,18 +48,17 @@ class RestaurantCard extends HTMLElement {
     restaurantName.textContent = this._restaurant.name;
     divEl.appendChild(restaurantName);
 
-    const restaurantDescription = document.createElement("h3");
-    restaurantDescription.setAttribute("class", "restaurant-description");
-    restaurantDescription.textContent = this._restaurant.description;
-    divEl.appendChild(restaurantDescription);
+    const restaurantDesc = document.createElement("h3");
+    restaurantDesc.setAttribute("class", "restaurant-desc");
+    restaurantDesc.textContent = this._restaurant.description;
+    divEl.appendChild(restaurantDesc);
 
     const pEl = document.createElement("p");
-    pEl.setAttribute("class", "restaurant-location-ratings");
     divEl.appendChild(pEl);
 
-    const restaurantLocation = document.createElement("span");
-    restaurantLocation.textContent = this._restaurant.city;
-    pEl.appendChild(restaurantLocation);
+    const restaurantCity = document.createElement("span");
+    restaurantCity.textContent = this._restaurant.city;
+    pEl.appendChild(restaurantCity);
 
     const restaurantRatings = document.createElement("span");
     restaurantRatings.textContent = String(this._restaurant.rating);
