@@ -1,7 +1,19 @@
+import "./RestaurantDetails.ts";
 import type { Restaurant } from "../types/restaurant";
+import type { RestaurantDetails } from "./RestaurantDetails.ts";
 
 const handleShowRestaurantDetails = (event: Event) => {
   event.preventDefault();
+
+  const restaurantCard = (event.target as HTMLButtonElement)
+    .parentElement as RestaurantCard;
+  const restaurantDetails = document.createElement(
+    "restaurant-details"
+  ) as RestaurantDetails;
+
+  restaurantDetails.setAttribute("scrollY", String(window.scrollY));
+  restaurantDetails.restaurant = restaurantCard._restaurant;
+  restaurantCard.appendChild(restaurantDetails);
 };
 
 class RestaurantCard extends HTMLElement {
@@ -20,14 +32,12 @@ class RestaurantCard extends HTMLElement {
   }
 
   connectedCallback() {
-    const btnDetails = this.lastElementChild
-      ?.lastElementChild as HTMLButtonElement;
+    const btnDetails = this.lastElementChild as HTMLButtonElement;
     btnDetails.addEventListener("click", handleShowRestaurantDetails);
   }
 
   disconnectedCallback() {
-    const btnDetails = this.lastElementChild
-      ?.lastElementChild as HTMLButtonElement;
+    const btnDetails = this.lastElementChild as HTMLButtonElement;
     btnDetails.removeEventListener("click", handleShowRestaurantDetails);
   }
 
@@ -67,7 +77,7 @@ class RestaurantCard extends HTMLElement {
     const btnEl = document.createElement("button");
     btnEl.setAttribute("type", "button");
     btnEl.textContent = "Details";
-    divEl.appendChild(btnEl);
+    this.appendChild(btnEl);
   }
 }
 

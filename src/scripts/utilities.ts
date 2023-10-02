@@ -8,4 +8,15 @@ const setToScrollSmooth = () => {
   htmlEl.setAttribute("class", "scroll-smooth");
 };
 
-export { setToScrollAuto, setToScrollSmooth };
+const enableScroll = () => {
+  window.onscroll = () => {};
+};
+
+const disableScroll = () => {
+  window.scrollTo(0, 0);
+  window.onscroll = () => {
+    window.scrollTo(0, 0);
+  };
+};
+
+export { setToScrollAuto, setToScrollSmooth, enableScroll, disableScroll };
