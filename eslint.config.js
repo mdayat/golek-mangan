@@ -1,5 +1,4 @@
-import tsParser from "@typescript-eslint/parser";
-import tsPlugin from "@typescript-eslint/eslint-plugin";
+
 
 const eslintRecommended = {
   "constructor-super": "off",
@@ -34,18 +33,11 @@ const config = [
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "module",
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: 2022,
-        project: "./tsconfig.json",
-      },
+      
     },
-    plugins: {
-      "@typescript-eslint": tsPlugin,
-    },
+    
     rules: {
       ...eslintRecommended,
-      ...tsPlugin.configs["strict-type-checked"].rules,
     },
   },
 ];

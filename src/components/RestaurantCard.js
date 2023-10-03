@@ -1,24 +1,19 @@
-import "./RestaurantDetails.ts";
-import type { Restaurant } from "../types/restaurant";
-import type { RestaurantDetails } from "./RestaurantDetails.ts";
+import "./RestaurantDetails.js";
 
-const handleShowRestaurantDetails = (event: Event) => {
+const handleShowRestaurantDetails = (event) => {
   event.preventDefault();
 
-  const restaurantCard = (event.target as HTMLButtonElement)
-    .parentElement as RestaurantCard;
-  const restaurantDetails = document.createElement(
-    "restaurant-details"
-  ) as RestaurantDetails;
+  const restaurantCard = event.target.parentElement;
+  const restaurantDetails = document.createElement("restaurant-details");
 
   restaurantDetails.setAttribute("scrollY", String(window.scrollY));
   restaurantDetails.restaurant = restaurantCard._restaurant;
-  restaurantDetails.modalOpener = event.target as HTMLButtonElement;
+  restaurantDetails.modalOpener = event.target;
   restaurantCard.appendChild(restaurantDetails);
 };
 
 class RestaurantCard extends HTMLElement {
-  _restaurant: Restaurant = {
+  _restaurant = {
     id: "",
     name: "",
     description: "",
@@ -27,18 +22,18 @@ class RestaurantCard extends HTMLElement {
     rating: 0,
   };
 
-  set restaurant(restaurant: Restaurant) {
+  set restaurant(restaurant) {
     this._restaurant = restaurant;
     this.render();
   }
 
   connectedCallback() {
-    const btnDetails = this.lastElementChild as HTMLButtonElement;
+    const btnDetails = this.lastElementChild;
     btnDetails.addEventListener("click", handleShowRestaurantDetails);
   }
 
   disconnectedCallback() {
-    const btnDetails = this.lastElementChild as HTMLButtonElement;
+    const btnDetails = this.lastElementChild;
     btnDetails.removeEventListener("click", handleShowRestaurantDetails);
   }
 
@@ -87,4 +82,3 @@ class RestaurantCard extends HTMLElement {
 }
 
 customElements.define("restaurant-card", RestaurantCard);
-export type { RestaurantCard };

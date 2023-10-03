@@ -4,25 +4,23 @@ import {
   focusTrap,
   setToScrollAuto,
   setToScrollSmooth,
-} from "../scripts/utilities";
-import type { Restaurant } from "../types/restaurant";
+} from "../scripts/utilities.js";
 
-const handleCloseRestaurantDetails = (event: Event) => {
+const handleCloseRestaurantDetails = (event) => {
   event.preventDefault();
-  const restaurantDetails = (event.target as HTMLButtonElement).parentElement
-    ?.parentElement as RestaurantDetails;
+  const restaurantDetails = event.target.parentElement.parentElement;
 
   setToScrollSmooth();
   enableScroll();
   window.scrollTo(0, restaurantDetails.scrollY);
-  restaurantDetails._modalOpener?.focus();
+  restaurantDetails._modalOpener.focus();
   restaurantDetails.remove();
 };
 
 class RestaurantDetails extends HTMLElement {
-  scrollY: number = 0;
-  _modalOpener: HTMLButtonElement | null = null;
-  _restaurant: Restaurant = {
+  scrollY = 0;
+  _modalOpener = null;
+  _restaurant = {
     id: "",
     name: "",
     description: "",
@@ -31,12 +29,12 @@ class RestaurantDetails extends HTMLElement {
     rating: 0,
   };
 
-  set restaurant(restaurant: Restaurant) {
+  set restaurant(restaurant) {
     this._restaurant = restaurant;
     this.render();
   }
 
-  set modalOpener(modalOpener: HTMLButtonElement) {
+  set modalOpener(modalOpener) {
     this._modalOpener = modalOpener;
   }
 
@@ -45,16 +43,14 @@ class RestaurantDetails extends HTMLElement {
     setToScrollAuto();
     disableScroll();
 
-    const btnClose = this.lastElementChild
-      ?.lastElementChild as HTMLButtonElement;
+    const btnClose = this.lastElementChild.lastElementChild;
     btnClose.addEventListener("click", handleCloseRestaurantDetails);
 
     focusTrap(this, [btnClose]);
   }
 
   disconnectedCallback() {
-    const btnClose = this.lastElementChild
-      ?.lastElementChild as HTMLButtonElement;
+    const btnClose = this.lastElementChild.lastElementChild;
     btnClose.addEventListener("click", handleCloseRestaurantDetails);
   }
 
@@ -107,4 +103,3 @@ class RestaurantDetails extends HTMLElement {
 }
 
 customElements.define("restaurant-details", RestaurantDetails);
-export type { RestaurantDetails };

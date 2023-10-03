@@ -1,10 +1,10 @@
 const setToScrollAuto = () => {
-  const htmlEl = document.getElementsByTagName("html")[0] as HTMLElement;
+  const htmlEl = document.getElementsByTagName("html")[0];
   htmlEl.setAttribute("class", "scroll-auto");
 };
 
 const setToScrollSmooth = () => {
-  const htmlEl = document.getElementsByTagName("html")[0] as HTMLElement;
+  const htmlEl = document.getElementsByTagName("html")[0];
   htmlEl.setAttribute("class", "scroll-smooth");
 };
 
@@ -19,15 +19,12 @@ const disableScroll = () => {
   };
 };
 
-const focusTrap = (
-  focusTrapContainer: HTMLElement,
-  focusableEls: HTMLElement[]
-) => {
+const focusTrap = (focusTrapContainer, focusableEls) => {
   const firstFocusableEl = focusableEls[0];
   const lastFocusableEl = focusableEls[focusableEls.length - 1];
   firstFocusableEl?.focus();
 
-  focusTrapContainer.addEventListener("keydown", (event: KeyboardEvent) => {
+  focusTrapContainer.addEventListener("keydown", (event) => {
     const isTabPressed = event.key === "Tab";
     if (!isTabPressed) return;
 
