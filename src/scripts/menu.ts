@@ -11,15 +11,19 @@ const closeMenu = (menu: HTMLUListElement) => {
   menu.classList.remove("open-nav-menu");
 };
 
-// Close menu when its item is clicked
-const handleClickMenuItem = (event: Event) => {
-  event.stopPropagation();
-
+const removeMenuEventListener = () => {
   window.removeEventListener("click", handleClickOutside);
   window.removeEventListener("resize", handleResizedNavMenu);
   for (let i = 0; i < menuItems.length; i++) {
     menuItems[i]?.removeEventListener("click", handleClickMenuItem);
   }
+};
+
+// Close menu when its item is clicked
+const handleClickMenuItem = (event: Event) => {
+  event.stopPropagation();
+
+  removeMenuEventListener();
   closeMenu(menu);
 };
 
@@ -32,11 +36,7 @@ const handleClickOutside = (event: Event) => {
   const isClickedOutside = !navEl?.contains(clickedEl);
 
   if (isClickedOutside) {
-    window.removeEventListener("click", handleClickOutside);
-    window.removeEventListener("resize", handleResizedNavMenu);
-    for (let i = 0; i < menuItems.length; i++) {
-      menuItems[i]?.removeEventListener("click", handleClickMenuItem);
-    }
+    removeMenuEventListener();
     closeMenu(menu);
   }
 };
@@ -47,11 +47,7 @@ const handleResizedNavMenu = () => {
   const isMenuOpened = menu.classList.value.includes("open-nav-menu");
 
   if (isMenuOpened) {
-    window.removeEventListener("click", handleClickOutside);
-    window.removeEventListener("resize", handleResizedNavMenu);
-    for (let i = 0; i < menuItems.length; i++) {
-      menuItems[i]?.removeEventListener("click", handleClickMenuItem);
-    }
+    removeMenuEventListener();
     closeMenu(menu);
   }
 };
@@ -62,18 +58,18 @@ const handleClickHamburgerMenu = (event: Event) => {
   const isMenuOpened = menu.classList.value.includes("open-nav-menu");
 
   if (isMenuOpened) {
-    window.removeEventListener("click", handleClickOutside);
-    window.removeEventListener("resize", handleResizedNavMenu);
+    removeMenuEventListener();
     closeMenu(menu);
   } else {
     openMenu(menu);
     hamburgerMenu.focus();
+    const controller = new AbortController();
 
     const focusTrapContainer = document.getElementsByTagName(
       "nav"
     )[0] as HTMLElement;
     const focusableEls = [event.currentTarget, ...menuItems] as HTMLElement[];
-    focusTrap(focusTrapContainer, focusableEls);
+    focusTrap(focusTrapContainer, focusableEls, controller.signal);
 
     window.addEventListener("click", handleClickOutside);
     window.addEventListener("resize", handleResizedNavMenu);
