@@ -97,6 +97,10 @@ class RestaurantDetails extends HTMLElement {
 
     const btnEl = document.createElement("button");
     btnEl.setAttribute("type", "button");
+    btnEl.setAttribute(
+      "aria-label",
+      `Close details of ${this._restaurant.name} Restaurant`
+    );
     btnEl.textContent = "Close";
     articleEl.appendChild(btnEl);
   }

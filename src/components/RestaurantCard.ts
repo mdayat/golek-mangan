@@ -77,6 +77,10 @@ class RestaurantCard extends HTMLElement {
 
     const btnEl = document.createElement("button");
     btnEl.setAttribute("type", "button");
+    btnEl.setAttribute(
+      "aria-label",
+      `Details of ${this._restaurant.name} Restaurant`
+    );
     btnEl.textContent = "Details";
     this.appendChild(btnEl);
   }
