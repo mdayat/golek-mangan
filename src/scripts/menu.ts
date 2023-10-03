@@ -13,6 +13,7 @@ const handleClickMenuItem = (event: Event) => {
     ?.parentElement as HTMLUListElement;
   closeMenu(menu);
   window.removeEventListener("click", handleClickOutside);
+  window.removeEventListener("resize", handleResizedNavMenu);
 };
 
 const handleClickOutside = (event: Event) => {
@@ -26,10 +27,26 @@ const handleClickOutside = (event: Event) => {
   if (isClickedOutside) {
     closeMenu(menu);
     window.removeEventListener("click", handleClickOutside);
+    window.removeEventListener("resize", handleResizedNavMenu);
   }
 };
 
-const handleClickMenu = (event: Event) => {
+const handleResizedNavMenu = () => {
+  if (window.innerWidth < 1024) return;
+
+  const menu = document.getElementsByClassName(
+    "nav-menu"
+  )[0] as HTMLUListElement;
+
+  const isMenuOpened = menu.classList.value.includes("open-nav-menu");
+  if (isMenuOpened) {
+    closeMenu(menu);
+    window.removeEventListener("click", handleClickOutside);
+    window.removeEventListener("resize", handleResizedNavMenu);
+  }
+};
+
+const handleClickHamburgerMenu = (event: Event) => {
   event.stopPropagation();
 
   const menu = document.getElementsByClassName(
@@ -41,9 +58,11 @@ const handleClickMenu = (event: Event) => {
   if (isMenuOpened) {
     closeMenu(menu);
     window.removeEventListener("click", handleClickOutside);
+    window.removeEventListener("resize", handleResizedNavMenu);
   } else {
     openMenu(menu);
     window.addEventListener("click", handleClickOutside);
+    window.addEventListener("resize", handleResizedNavMenu);
     for (let i = 0; i < menuItems.length; i++) {
       const menuItem = (menuItems[i] as HTMLLIElement)
         .firstElementChild as HTMLAnchorElement;
@@ -52,18 +71,4 @@ const handleClickMenu = (event: Event) => {
   }
 };
 
-window.addEventListener("resize", () => {
-  if (window.innerWidth < 1024) return;
-
-  const menu = document.getElementsByClassName(
-    "nav-menu"
-  )[0] as HTMLUListElement;
-
-  const isMenuOpened = menu.classList.value.includes("open-nav-menu");
-  if (isMenuOpened) {
-    closeMenu(menu);
-    window.removeEventListener("click", handleClickOutside);
-  }
-});
-
-export { handleClickMenu };
+export { handleClickHamburgerMenu };

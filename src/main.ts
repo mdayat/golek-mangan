@@ -3,7 +3,7 @@ import "./styles/reset.css";
 import "./main.css";
 
 import data from "./public/data.json";
-import { handleClickMenu } from "./scripts/menu";
+import { handleClickHamburgerMenu } from "./scripts/menu";
 import type { RestaurantData, Restaurant } from "./types/restaurant";
 import type { RestaurantCard } from "./components/RestaurantCard.ts";
 
@@ -23,7 +23,7 @@ for (const restaurant of restaurants) {
 const hamburgerMenu = document.getElementsByClassName(
   "hamburger-menu"
 )[0] as HTMLButtonElement;
-hamburgerMenu.addEventListener("click", handleClickMenu);
+hamburgerMenu.addEventListener("click", handleClickHamburgerMenu);
 
 const copyrightYear = document.getElementById(
   "copyright-year"
