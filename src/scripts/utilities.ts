@@ -1,3 +1,8 @@
+interface FocusTrapReturnTypes {
+  addFocusTrap: () => void;
+  removeFocusTrap: () => void;
+}
+
 const setToScrollAuto = () => {
   const htmlEl = document.getElementsByTagName("html")[0] as HTMLElement;
   htmlEl.setAttribute("class", "scroll-auto");
@@ -22,12 +27,12 @@ const disableScroll = () => {
 const focusTrap = (
   focusTrapContainer: HTMLElement,
   focusableEls: HTMLElement[]
-) => {
+): FocusTrapReturnTypes => {
   const firstFocusableEl = focusableEls[0];
   const lastFocusableEl = focusableEls[focusableEls.length - 1];
-  firstFocusableEl?.focus();
 
-  focusTrapContainer.addEventListener("keydown", (event: KeyboardEvent) => {
+  const handleFocusTrap = (event: KeyboardEvent) => {
+    console.log("SINI");
     const isTabPressed = event.key === "Tab";
     if (!isTabPressed) return;
 
@@ -42,7 +47,18 @@ const focusTrap = (
         event.preventDefault();
       }
     }
-  });
+  };
+
+  return {
+    addFocusTrap: () => {
+      firstFocusableEl?.focus();
+      focusTrapContainer.addEventListener("keydown", handleFocusTrap);
+    },
+
+    removeFocusTrap: () => {
+      focusTrapContainer.removeEventListener("keydown", handleFocusTrap);
+    },
+  };
 };
 
 export {

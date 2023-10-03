@@ -47,15 +47,16 @@ class RestaurantDetails extends HTMLElement {
 
     const btnClose = this.lastElementChild
       ?.lastElementChild as HTMLButtonElement;
-    btnClose.addEventListener("click", handleCloseRestaurantDetails);
+    const { addFocusTrap } = focusTrap(this, [btnClose]);
 
-    focusTrap(this, [btnClose]);
+    addFocusTrap();
+    btnClose.addEventListener("click", handleCloseRestaurantDetails);
   }
 
   disconnectedCallback() {
     const btnClose = this.lastElementChild
       ?.lastElementChild as HTMLButtonElement;
-    btnClose.addEventListener("click", handleCloseRestaurantDetails);
+    btnClose.removeEventListener("click", handleCloseRestaurantDetails);
   }
 
   render() {

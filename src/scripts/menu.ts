@@ -3,6 +3,20 @@ import { focusTrap } from "./utilities";
 const menu = document.getElementsByClassName("nav-menu")[0] as HTMLUListElement;
 const menuItems = menu.getElementsByTagName("a");
 
+const focusTrapContainer = document.getElementsByTagName(
+  "nav"
+)[0] as HTMLElement;
+
+const focusableEls = [
+  menu.previousElementSibling,
+  ...menuItems,
+] as HTMLElement[];
+
+const { addFocusTrap, removeFocusTrap } = focusTrap(
+  focusTrapContainer,
+  focusableEls
+);
+
 const openMenu = (menu: HTMLUListElement) => {
   menu.classList.add("open-nav-menu");
 };
@@ -12,6 +26,7 @@ const closeMenu = (menu: HTMLUListElement) => {
 };
 
 const removeMenuEventListener = () => {
+  removeFocusTrap();
   window.removeEventListener("click", handleClickOutside);
   window.removeEventListener("resize", handleResizedNavMenu);
   for (let i = 0; i < menuItems.length; i++) {
@@ -63,13 +78,7 @@ const handleClickHamburgerMenu = (event: Event) => {
   } else {
     openMenu(menu);
     hamburgerMenu.focus();
-    const controller = new AbortController();
-
-    const focusTrapContainer = document.getElementsByTagName(
-      "nav"
-    )[0] as HTMLElement;
-    const focusableEls = [event.currentTarget, ...menuItems] as HTMLElement[];
-    focusTrap(focusTrapContainer, focusableEls, controller.signal);
+    addFocusTrap();
 
     window.addEventListener("click", handleClickOutside);
     window.addEventListener("resize", handleResizedNavMenu);
