@@ -1,6 +1,7 @@
 import {
   disableScroll,
   enableScroll,
+  focusTrap,
   setToScrollAuto,
   setToScrollSmooth,
 } from "../scripts/utilities";
@@ -37,9 +38,12 @@ class RestaurantDetails extends HTMLElement {
     this.scrollY = Number(this.getAttribute("scrollY"));
     setToScrollAuto();
     disableScroll();
+
     const btnClose = this.lastElementChild
       ?.lastElementChild as HTMLButtonElement;
     btnClose.addEventListener("click", handleCloseRestaurantDetails);
+
+    focusTrap(this, [btnClose]);
   }
 
   disconnectedCallback() {
