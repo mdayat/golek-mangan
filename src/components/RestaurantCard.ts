@@ -13,6 +13,7 @@ const handleShowRestaurantDetails = (event: Event) => {
 
   restaurantDetails.setAttribute("scrollY", String(window.scrollY));
   restaurantDetails.restaurant = restaurantCard._restaurant;
+  restaurantDetails.modalOpener = event.target as HTMLButtonElement;
   restaurantCard.appendChild(restaurantDetails);
 };
 

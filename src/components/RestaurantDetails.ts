@@ -15,11 +15,13 @@ const handleCloseRestaurantDetails = (event: Event) => {
   setToScrollSmooth();
   enableScroll();
   window.scrollTo(0, restaurantDetails.scrollY);
+  restaurantDetails._modalOpener?.focus();
   restaurantDetails.remove();
 };
 
 class RestaurantDetails extends HTMLElement {
   scrollY: number = 0;
+  _modalOpener: HTMLButtonElement | null = null;
   _restaurant: Restaurant = {
     id: "",
     name: "",
@@ -32,6 +34,10 @@ class RestaurantDetails extends HTMLElement {
   set restaurant(restaurant: Restaurant) {
     this._restaurant = restaurant;
     this.render();
+  }
+
+  set modalOpener(modalOpener: HTMLButtonElement) {
+    this._modalOpener = modalOpener;
   }
 
   connectedCallback() {
