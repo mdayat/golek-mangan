@@ -19,4 +19,36 @@ const disableScroll = () => {
   };
 };
 
-export { setToScrollAuto, setToScrollSmooth, enableScroll, disableScroll };
+const focusTrap = (
+  focusTrapContainer: HTMLElement,
+  focusableEls: HTMLElement[]
+) => {
+  const firstFocusableEl = focusableEls[0];
+  const lastFocusableEl = focusableEls[focusableEls.length - 1];
+  firstFocusableEl?.focus();
+
+  focusTrapContainer.addEventListener("keydown", (event: KeyboardEvent) => {
+    const isTabPressed = event.key === "Tab";
+    if (!isTabPressed) return;
+
+    if (event.shiftKey) {
+      if (document.activeElement === firstFocusableEl) {
+        lastFocusableEl?.focus();
+        event.preventDefault();
+      }
+    } else {
+      if (document.activeElement === lastFocusableEl) {
+        firstFocusableEl?.focus();
+        event.preventDefault();
+      }
+    }
+  });
+};
+
+export {
+  setToScrollAuto,
+  setToScrollSmooth,
+  enableScroll,
+  disableScroll,
+  focusTrap,
+};
