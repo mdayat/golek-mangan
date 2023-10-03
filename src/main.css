@@ -334,7 +334,7 @@ footer p {
     display: none;
   }
   .nav-menu {
-    opacity: 1;
+    visibility: visible;
     height: fit-content;
     flex-direction: row;
     flex-basis: content;

@@ -3,22 +3,6 @@ import { focusTrap } from "./utilities";
 const menu = document.getElementsByClassName("nav-menu")[0] as HTMLUListElement;
 const menuItems = menu.getElementsByTagName("a");
 
-const enableFocus = () => {
-  for (let i = 0; i < menuItems.length; i++) {
-    menuItems[i]?.removeAttribute("tabindex");
-  }
-};
-
-const disableFocus = () => {
-  for (let i = 0; i < menuItems.length; i++) {
-    menuItems[i]?.setAttribute("tabindex", "-1");
-  }
-};
-
-if (window.innerWidth < 1024) {
-  disableFocus();
-}
-
 const openMenu = (menu: HTMLUListElement) => {
   menu.classList.add("open-nav-menu");
 };
@@ -31,7 +15,6 @@ const closeMenu = (menu: HTMLUListElement) => {
 const handleClickMenuItem = (event: Event) => {
   event.stopPropagation();
 
-  disableFocus();
   window.removeEventListener("click", handleClickOutside);
   window.removeEventListener("resize", handleResizedNavMenu);
   for (let i = 0; i < menuItems.length; i++) {
@@ -49,7 +32,6 @@ const handleClickOutside = (event: Event) => {
   const isClickedOutside = !navEl?.contains(clickedEl);
 
   if (isClickedOutside) {
-    disableFocus();
     window.removeEventListener("click", handleClickOutside);
     window.removeEventListener("resize", handleResizedNavMenu);
     for (let i = 0; i < menuItems.length; i++) {
@@ -65,7 +47,6 @@ const handleResizedNavMenu = () => {
   const isMenuOpened = menu.classList.value.includes("open-nav-menu");
 
   if (isMenuOpened) {
-    disableFocus();
     window.removeEventListener("click", handleClickOutside);
     window.removeEventListener("resize", handleResizedNavMenu);
     for (let i = 0; i < menuItems.length; i++) {
@@ -81,13 +62,11 @@ const handleClickHamburgerMenu = (event: Event) => {
   const isMenuOpened = menu.classList.value.includes("open-nav-menu");
 
   if (isMenuOpened) {
-    disableFocus();
     window.removeEventListener("click", handleClickOutside);
     window.removeEventListener("resize", handleResizedNavMenu);
     closeMenu(menu);
   } else {
     openMenu(menu);
-    enableFocus();
     hamburgerMenu.focus();
 
     const focusTrapContainer = document.getElementsByTagName(
