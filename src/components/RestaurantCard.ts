@@ -2,7 +2,7 @@ import "./RestaurantDetails.ts";
 import type { Restaurant } from "../types/restaurant";
 import type { RestaurantDetails } from "./RestaurantDetails.ts";
 
-const handleShowRestaurantDetails = (event: Event) => {
+const openRestaurantDetails = (event: MouseEvent) => {
   event.preventDefault();
 
   const restaurantCard = (event.target as HTMLButtonElement)
@@ -33,13 +33,13 @@ class RestaurantCard extends HTMLElement {
   }
 
   connectedCallback() {
-    const btnDetails = this.lastElementChild as HTMLButtonElement;
-    btnDetails.addEventListener("click", handleShowRestaurantDetails);
+    const buttonDetails = this.lastElementChild as HTMLButtonElement;
+    buttonDetails.addEventListener("click", openRestaurantDetails);
   }
 
   disconnectedCallback() {
-    const btnDetails = this.lastElementChild as HTMLButtonElement;
-    btnDetails.removeEventListener("click", handleShowRestaurantDetails);
+    const buttonDetails = this.lastElementChild as HTMLButtonElement;
+    buttonDetails.removeEventListener("click", openRestaurantDetails);
   }
 
   render() {
@@ -51,38 +51,38 @@ class RestaurantCard extends HTMLElement {
     restaurantImage.setAttribute("class", "restaurant-image");
     this.appendChild(restaurantImage);
 
-    const divEl = document.createElement("div");
-    this.appendChild(divEl);
+    const divElement = document.createElement("div");
+    this.appendChild(divElement);
 
     const restaurantName = document.createElement("h3");
     restaurantName.setAttribute("class", "restaurant-name");
     restaurantName.textContent = this._restaurant.name;
-    divEl.appendChild(restaurantName);
+    divElement.appendChild(restaurantName);
 
     const restaurantDescription = document.createElement("h3");
     restaurantDescription.setAttribute("class", "restaurant-description");
     restaurantDescription.textContent = this._restaurant.description;
-    divEl.appendChild(restaurantDescription);
+    divElement.appendChild(restaurantDescription);
 
-    const pEl = document.createElement("p");
-    divEl.appendChild(pEl);
+    const paragraphElement = document.createElement("p");
+    divElement.appendChild(paragraphElement);
 
     const restaurantCity = document.createElement("span");
     restaurantCity.textContent = this._restaurant.city;
-    pEl.appendChild(restaurantCity);
+    paragraphElement.appendChild(restaurantCity);
 
     const restaurantRatings = document.createElement("span");
     restaurantRatings.textContent = String(this._restaurant.rating);
-    pEl.appendChild(restaurantRatings);
+    paragraphElement.appendChild(restaurantRatings);
 
-    const btnEl = document.createElement("button");
-    btnEl.setAttribute("type", "button");
-    btnEl.setAttribute(
+    const buttonElement = document.createElement("button");
+    buttonElement.setAttribute("type", "button");
+    buttonElement.setAttribute(
       "aria-label",
       `Open restaurant details of ${this._restaurant.name}`
     );
-    btnEl.textContent = "Details";
-    this.appendChild(btnEl);
+    buttonElement.textContent = "Details";
+    this.appendChild(buttonElement);
   }
 }
 

@@ -26,10 +26,10 @@ const disableScroll = () => {
 
 const focusTrap = (
   focusTrapContainer: HTMLElement,
-  focusableEls: HTMLElement[]
+  focusableElements: HTMLElement[]
 ): FocusTrapReturnTypes => {
-  const firstFocusableEl = focusableEls[0];
-  const lastFocusableEl = focusableEls[focusableEls.length - 1];
+  const firstFocusableEl = focusableElements[0];
+  const lastFocusableEl = focusableElements[focusableElements.length - 1];
 
   const handleFocusTrap = (event: KeyboardEvent) => {
     const isTabPressed = event.key === "Tab";

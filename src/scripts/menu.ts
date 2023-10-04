@@ -1,91 +1,101 @@
 import { focusTrap } from "./utilities";
 
-const menu = document.getElementsByClassName(
+const navigationMenu = document.getElementsByClassName(
   "navigation-menu"
 )[0] as HTMLUListElement;
-const menuItems = menu.getElementsByTagName("a");
-
+const navigationMenuItems = navigationMenu.getElementsByTagName("a");
 const focusTrapContainer = document.getElementsByTagName(
   "nav"
 )[0] as HTMLElement;
 
-const focusableEls = [
-  menu.previousElementSibling,
-  ...menuItems,
+const focusableElements = [
+  navigationMenu.previousElementSibling,
+  ...navigationMenuItems,
 ] as HTMLElement[];
 
 const { addFocusTrap, removeFocusTrap } = focusTrap(
   focusTrapContainer,
-  focusableEls
+  focusableElements
 );
 
-const openMenu = (menu: HTMLUListElement) => {
-  menu.classList.add("open-navigation-menu");
+const openNavigationMenu = (navigationMenu: HTMLUListElement) => {
+  navigationMenu.classList.add("open-navigation-menu");
 };
 
-const closeMenu = (menu: HTMLUListElement) => {
-  menu.classList.remove("open-navigation-menu");
+const closeNavigationMenu = (navigationMenu: HTMLUListElement) => {
+  navigationMenu.classList.remove("open-navigation-menu");
 };
 
-const removeMenuEventListener = () => {
+// Remove all event listener associated with navigation menu
+const removeNavigationMenuEventsListener = () => {
   removeFocusTrap();
   window.removeEventListener("click", handleClickOutside);
-  window.removeEventListener("resize", handleResizedNavMenu);
-  for (let i = 0; i < menuItems.length; i++) {
-    menuItems[i]?.removeEventListener("click", handleClickMenuItem);
+  window.removeEventListener("resize", handleResizeWindow);
+  for (let index = 0; index < navigationMenuItems.length; index++) {
+    navigationMenuItems[index]?.removeEventListener(
+      "click",
+      handleClickNavigationMenuItem
+    );
   }
 };
 
 // Close menu when its item is clicked
-const handleClickMenuItem = (event: Event) => {
+const handleClickNavigationMenuItem = (event: MouseEvent) => {
   event.stopPropagation();
 
-  removeMenuEventListener();
-  closeMenu(menu);
+  removeNavigationMenuEventsListener();
+  closeNavigationMenu(navigationMenu);
 };
 
 // Close menu when clicking outside of menu
-const handleClickOutside = (event: Event) => {
+const handleClickOutside = (event: MouseEvent) => {
   event.stopPropagation();
 
-  const navEl = document.getElementsByTagName("nav")[0];
-  const clickedEl = event.target as HTMLElement;
-  const isClickedOutside = !navEl?.contains(clickedEl);
+  const navElement = document.getElementsByTagName("nav")[0];
+  const clickedElement = event.target as HTMLElement;
+  const isClickedOutside = !navElement?.contains(clickedElement);
 
   if (isClickedOutside) {
-    removeMenuEventListener();
-    closeMenu(menu);
+    removeNavigationMenuEventsListener();
+    closeNavigationMenu(navigationMenu);
   }
 };
 
 // Close menu when viewport is >= 1024
-const handleResizedNavMenu = () => {
+const handleResizeWindow = () => {
   if (window.innerWidth < 1024) return;
-  const isMenuOpened = menu.classList.value.includes("open-navigation-menu");
+  const isMenuOpened = navigationMenu.classList.value.includes(
+    "open-navigation-menu"
+  );
 
   if (isMenuOpened) {
-    removeMenuEventListener();
-    closeMenu(menu);
+    removeNavigationMenuEventsListener();
+    closeNavigationMenu(navigationMenu);
   }
 };
 
-const handleClickHamburgerMenu = (event: Event) => {
+const handleClickHamburgerMenu = (event: MouseEvent) => {
   event.stopPropagation();
   const hamburgerMenu = event.currentTarget as HTMLButtonElement;
-  const isMenuOpened = menu.classList.value.includes("open-navigation-menu");
+  const isMenuOpened = navigationMenu.classList.value.includes(
+    "open-navigation-menu"
+  );
 
   if (isMenuOpened) {
-    removeMenuEventListener();
-    closeMenu(menu);
+    removeNavigationMenuEventsListener();
+    closeNavigationMenu(navigationMenu);
   } else {
-    openMenu(menu);
+    openNavigationMenu(navigationMenu);
     hamburgerMenu.focus();
     addFocusTrap();
 
     window.addEventListener("click", handleClickOutside);
-    window.addEventListener("resize", handleResizedNavMenu);
-    for (let i = 0; i < menuItems.length; i++) {
-      menuItems[i]?.addEventListener("click", handleClickMenuItem);
+    window.addEventListener("resize", handleResizeWindow);
+    for (let index = 0; index < navigationMenuItems.length; index++) {
+      navigationMenuItems[index]?.addEventListener(
+        "click",
+        handleClickNavigationMenuItem
+      );
     }
   }
 };
