@@ -68,7 +68,7 @@ class RestaurantDetails extends HTMLElement {
 
     const restaurantImage = document.createElement("img");
     restaurantImage.setAttribute("src", this._restaurant.pictureId);
-    restaurantImage.setAttribute("alt", "");
+    restaurantImage.setAttribute("alt", this._restaurant.name);
     restaurantImage.setAttribute("class", "restaurant-details-image");
     articleEl.appendChild(restaurantImage);
 
