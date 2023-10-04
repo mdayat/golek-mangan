@@ -1,6 +1,8 @@
 import { focusTrap } from "./utilities";
 
-const menu = document.getElementsByClassName("nav-menu")[0] as HTMLUListElement;
+const menu = document.getElementsByClassName(
+  "navigation-menu"
+)[0] as HTMLUListElement;
 const menuItems = menu.getElementsByTagName("a");
 
 const focusTrapContainer = document.getElementsByTagName(
@@ -18,11 +20,11 @@ const { addFocusTrap, removeFocusTrap } = focusTrap(
 );
 
 const openMenu = (menu: HTMLUListElement) => {
-  menu.classList.add("open-nav-menu");
+  menu.classList.add("open-navigation-menu");
 };
 
 const closeMenu = (menu: HTMLUListElement) => {
-  menu.classList.remove("open-nav-menu");
+  menu.classList.remove("open-navigation-menu");
 };
 
 const removeMenuEventListener = () => {
@@ -59,7 +61,7 @@ const handleClickOutside = (event: Event) => {
 // Close menu when viewport is >= 1024
 const handleResizedNavMenu = () => {
   if (window.innerWidth < 1024) return;
-  const isMenuOpened = menu.classList.value.includes("open-nav-menu");
+  const isMenuOpened = menu.classList.value.includes("open-navigation-menu");
 
   if (isMenuOpened) {
     removeMenuEventListener();
@@ -70,7 +72,7 @@ const handleResizedNavMenu = () => {
 const handleClickHamburgerMenu = (event: Event) => {
   event.stopPropagation();
   const hamburgerMenu = event.currentTarget as HTMLButtonElement;
-  const isMenuOpened = menu.classList.value.includes("open-nav-menu");
+  const isMenuOpened = menu.classList.value.includes("open-navigation-menu");
 
   if (isMenuOpened) {
     removeMenuEventListener();

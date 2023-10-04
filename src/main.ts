@@ -9,7 +9,7 @@ import type { RestaurantCard } from "./components/RestaurantCard.ts";
 
 const restaurants: Restaurant[] = (data as RestaurantData).restaurants;
 const restaurantContainer = document.getElementsByClassName(
-  "restaurant-container"
+  "restaurants-container"
 )[0] as HTMLElement;
 
 for (const restaurant of restaurants) {

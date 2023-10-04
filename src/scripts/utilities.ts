@@ -32,7 +32,6 @@ const focusTrap = (
   const lastFocusableEl = focusableEls[focusableEls.length - 1];
 
   const handleFocusTrap = (event: KeyboardEvent) => {
-    console.log("SINI");
     const isTabPressed = event.key === "Tab";
     if (!isTabPressed) return;
 

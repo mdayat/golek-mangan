@@ -43,7 +43,7 @@ class RestaurantCard extends HTMLElement {
   }
 
   render() {
-    this.setAttribute("class", "restaurant");
+    this.setAttribute("class", "restaurant-card");
 
     const restaurantImage = document.createElement("img");
     restaurantImage.setAttribute("src", this._restaurant.pictureId);
@@ -59,10 +59,10 @@ class RestaurantCard extends HTMLElement {
     restaurantName.textContent = this._restaurant.name;
     divEl.appendChild(restaurantName);
 
-    const restaurantDesc = document.createElement("h3");
-    restaurantDesc.setAttribute("class", "restaurant-desc");
-    restaurantDesc.textContent = this._restaurant.description;
-    divEl.appendChild(restaurantDesc);
+    const restaurantDescription = document.createElement("h3");
+    restaurantDescription.setAttribute("class", "restaurant-description");
+    restaurantDescription.textContent = this._restaurant.description;
+    divEl.appendChild(restaurantDescription);
 
     const pEl = document.createElement("p");
     divEl.appendChild(pEl);
@@ -79,7 +79,7 @@ class RestaurantCard extends HTMLElement {
     btnEl.setAttribute("type", "button");
     btnEl.setAttribute(
       "aria-label",
-      `Details of ${this._restaurant.name} Restaurant`
+      `Open restaurant details of ${this._restaurant.name}`
     );
     btnEl.textContent = "Details";
     this.appendChild(btnEl);

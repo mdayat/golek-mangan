@@ -12,10 +12,10 @@ const handleCloseRestaurantDetails = (event: Event) => {
   const restaurantDetails = (event.target as HTMLButtonElement).parentElement
     ?.parentElement as RestaurantDetails;
 
-  setToScrollSmooth();
   enableScroll();
+  setToScrollSmooth();
+  restaurantDetails._modalOpener?.focus({ preventScroll: true });
   window.scrollTo(0, restaurantDetails.scrollY);
-  restaurantDetails._modalOpener?.focus();
   restaurantDetails.remove();
 };
 
@@ -91,16 +91,19 @@ class RestaurantDetails extends HTMLElement {
     restaurantName.textContent = this._restaurant.name;
     divEl.appendChild(restaurantName);
 
-    const restaurantDesc = document.createElement("h3");
-    restaurantDesc.setAttribute("class", "restaurant-details-desc");
-    restaurantDesc.textContent = this._restaurant.description;
-    divEl.appendChild(restaurantDesc);
+    const restaurantDescription = document.createElement("h3");
+    restaurantDescription.setAttribute(
+      "class",
+      "restaurant-details-description"
+    );
+    restaurantDescription.textContent = this._restaurant.description;
+    divEl.appendChild(restaurantDescription);
 
     const btnEl = document.createElement("button");
     btnEl.setAttribute("type", "button");
     btnEl.setAttribute(
       "aria-label",
-      `Close details of ${this._restaurant.name} Restaurant`
+      `Close restaurant details of ${this._restaurant.name}`
     );
     btnEl.textContent = "Close";
     articleEl.appendChild(btnEl);
