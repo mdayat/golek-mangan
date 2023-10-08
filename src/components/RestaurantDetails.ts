@@ -28,7 +28,11 @@ class RestaurantDetails extends HTMLElement {
     description: "",
     pictureId: "",
     city: "",
+    address: "",
+    categories: [],
+    menus: { foods: [], drinks: [] },
     rating: 0,
+    customerReviews: [],
   };
 
   set restaurant(restaurant: Restaurant) {

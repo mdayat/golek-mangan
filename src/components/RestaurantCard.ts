@@ -1,6 +1,6 @@
-import "./RestaurantDetails.ts";
+import "./RestaurantDetails";
 import type { Restaurant } from "../types/restaurant";
-import type { RestaurantDetails } from "./RestaurantDetails.ts";
+import type { RestaurantDetails } from "./RestaurantDetails";
 
 const openRestaurantDetails = (event: MouseEvent) => {
   event.preventDefault();
@@ -24,7 +24,11 @@ class RestaurantCard extends HTMLElement {
     description: "",
     pictureId: "",
     city: "",
+    address: "",
+    categories: [],
+    menus: { foods: [], drinks: [] },
     rating: 0,
+    customerReviews: [],
   };
 
   set restaurant(restaurant: Restaurant) {

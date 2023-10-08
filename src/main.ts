@@ -1,13 +1,13 @@
-import "./components/RestaurantCard.ts";
 import "./styles/reset.css";
+import "./styles/responsive.css";
 import "./main.css";
+import "./components/RestaurantCard";
 
-import data from "./public/data.json";
 import { handleClickHamburgerMenu } from "./scripts/menu";
-import type { RestaurantData, Restaurant } from "./types/restaurant";
-import type { RestaurantCard } from "./components/RestaurantCard.ts";
+import type { Restaurant } from "./types/restaurant";
+import type { RestaurantCard } from "./components/RestaurantCard";
 
-const restaurants: Restaurant[] = (data as RestaurantData).restaurants;
+const restaurants: Restaurant[] = [];
 const restaurantContainer = document.getElementsByClassName(
   "restaurants-container"
 )[0] as HTMLElement;
