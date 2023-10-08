@@ -1,6 +1,7 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const config = {
@@ -27,20 +28,20 @@ const config = {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource",
-      },
-      {
-        test: /\.html$/i,
-        loader: "html-loader",
-      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: path.resolve(__dirname, "src/index.html"),
       filename: "index.html",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "src/public/"),
+          to: path.resolve(__dirname, "dist/"),
+        },
+      ],
     }),
   ],
   resolve: {
