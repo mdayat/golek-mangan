@@ -221,17 +221,18 @@ nav {
   font-weight: bold;
   font-size: 14px;
 }
-.restaurant-card button {
+.restaurant-card > a {
   background-color: var(--green);
   color: var(--white);
-  border: none;
-  display: block;
-  margin: 0 auto 16px;
   font-weight: bold;
   font-size: 14px;
+  width: fit-content;
   height: 44px;
   padding: 0 32px;
   border-radius: 32px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 16px;
 }
 
 /* Restaurant Details */
@@ -294,6 +295,35 @@ nav {
   height: 44px;
   padding: 0 32px;
   border-radius: 32px;
+}
+
+/* Loading */
+.loading {
+  width: 120px;
+  height: 120px;
+  border: 16px solid var(--white);
+  border-top: 16px solid var(--green);
+  border-radius: 50%;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Footer */

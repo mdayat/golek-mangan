@@ -1,21 +1,6 @@
 import "./RestaurantDetails";
+import { IMAGE_ENDPOINT } from "../utils/config";
 import type { Restaurant } from "../types/restaurant";
-import type { RestaurantDetails } from "./RestaurantDetails";
-
-const openRestaurantDetails = (event: MouseEvent) => {
-  event.preventDefault();
-
-  const restaurantCard = (event.target as HTMLButtonElement)
-    .parentElement as RestaurantCard;
-  const restaurantDetails = document.createElement(
-    "restaurant-details"
-  ) as RestaurantDetails;
-
-  restaurantDetails.setAttribute("scrollY", String(window.scrollY));
-  restaurantDetails.restaurant = restaurantCard._restaurant;
-  restaurantDetails.modalOpener = event.target as HTMLButtonElement;
-  restaurantCard.appendChild(restaurantDetails);
-};
 
 class RestaurantCard extends HTMLElement {
   _restaurant: Restaurant = {
@@ -36,21 +21,14 @@ class RestaurantCard extends HTMLElement {
     this.render();
   }
 
-  connectedCallback() {
-    const buttonDetails = this.lastElementChild as HTMLButtonElement;
-    buttonDetails.addEventListener("click", openRestaurantDetails);
-  }
-
-  disconnectedCallback() {
-    const buttonDetails = this.lastElementChild as HTMLButtonElement;
-    buttonDetails.removeEventListener("click", openRestaurantDetails);
-  }
-
   render() {
     this.setAttribute("class", "restaurant-card");
 
     const restaurantImage = document.createElement("img");
-    restaurantImage.setAttribute("src", this._restaurant.pictureId);
+    restaurantImage.setAttribute(
+      "src",
+      `${IMAGE_ENDPOINT}${this._restaurant.pictureId}`
+    );
     restaurantImage.setAttribute("alt", "");
     restaurantImage.setAttribute("class", "restaurant-image");
     this.appendChild(restaurantImage);
@@ -79,14 +57,17 @@ class RestaurantCard extends HTMLElement {
     restaurantRatings.textContent = String(this._restaurant.rating);
     paragraphElement.appendChild(restaurantRatings);
 
-    const buttonElement = document.createElement("button");
-    buttonElement.setAttribute("type", "button");
-    buttonElement.setAttribute(
+    const anchorElement = document.createElement("a");
+    anchorElement.setAttribute(
+      "href",
+      `#restaurants/${this._restaurant.id}/details`
+    );
+    anchorElement.setAttribute(
       "aria-label",
       `Open restaurant details of ${this._restaurant.name}`
     );
-    buttonElement.textContent = "Details";
-    this.appendChild(buttonElement);
+    anchorElement.textContent = "Details";
+    this.appendChild(anchorElement);
   }
 }
 
