@@ -1,20 +1,30 @@
 import { HeadlineArticle } from "../components/HeadlineArticle";
+import { Loading } from "../components/Loading";
+import { getRestaurants } from "../utils/restaurant";
 import type { RestaurantCard } from "../components/RestaurantCard";
-import type { Restaurant } from "../types/restaurant";
 
 const handleHomePageFunctionalities = (homePageContent: HTMLElement) => {
-  const restaurants: Restaurant[] = [];
   const restaurantsContainer = homePageContent.getElementsByClassName(
     "restaurants-container"
   )[0] as HTMLElement;
 
-  for (const restaurant of restaurants) {
-    const restaurantCard = document.createElement(
-      "restaurant-card"
-    ) as RestaurantCard;
-    restaurantCard.restaurant = restaurant;
-    restaurantsContainer.appendChild(restaurantCard);
-  }
+  getRestaurants(Loading(restaurantsContainer), (restaurants, errorMessage) => {
+    if (errorMessage !== "") {
+      const notfound = document.createElement("p");
+      notfound.textContent = errorMessage;
+      notfound.style.color = "#fff";
+      restaurantsContainer.appendChild(notfound);
+      return;
+    }
+
+    for (const restaurant of restaurants) {
+      const restaurantCard = document.createElement(
+        "restaurant-card"
+      ) as RestaurantCard;
+      restaurantCard.restaurant = restaurant;
+      restaurantsContainer.appendChild(restaurantCard);
+    }
+  });
 };
 
 const Home = () => {
