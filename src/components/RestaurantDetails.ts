@@ -1,11 +1,11 @@
 import {
   disableScroll,
   enableScroll,
-  focusTrap,
   setToScrollAuto,
   setToScrollSmooth,
-} from "../scripts/utilities";
+} from "../utils/scrollBehavior";
 import type { Restaurant } from "../types/restaurant";
+import { focusTrap } from "../utils/focusTrap";
 
 const closeRestaurantDetails = (event: MouseEvent) => {
   event.preventDefault();
