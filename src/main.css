@@ -306,24 +306,30 @@ nav {
   border-radius: 50%;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
+  margin: 0 auto;
 }
 
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
+/* Not Found */
+.not-found-container {
+  width: calc(100% - 64px);
+  max-width: 500px;
+  margin: 0 auto;
 }
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.not-found-title {
+  font-weight: bold;
+  font-size: 72px;
+  line-height: normal;
+  color: var(--green);
+  text-align: center;
+}
+.not-found-description {
+  font-weight: 500;
+  line-height: normal;
+}
+.not-found-description a {
+  font-weight: bold;
+  color: var(--green);
+  text-decoration: underline;
 }
 
 /* Footer */
