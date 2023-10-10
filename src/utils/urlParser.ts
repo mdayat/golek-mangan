@@ -30,3 +30,4 @@ const combineUrl = (splittedUrl: SplittedUrl) => {
 };
 
 export { parseActiveUrl, splitUrl, combineUrl };
+export type { SplittedUrl };

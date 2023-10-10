@@ -1,4 +1,5 @@
 import "./styles/reset.css";
+import "./styles/animations.css";
 import "./main.css";
 import "./styles/responsive.css";
 import "./components/RestaurantCard";

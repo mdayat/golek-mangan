@@ -58,10 +58,7 @@ class RestaurantCard extends HTMLElement {
     paragraphElement.appendChild(restaurantRatings);
 
     const anchorElement = document.createElement("a");
-    anchorElement.setAttribute(
-      "href",
-      `#restaurants/${this._restaurant.id}/details`
-    );
+    anchorElement.setAttribute("href", `#restaurants/${this._restaurant.id}`);
     anchorElement.setAttribute(
       "aria-label",
       `Open restaurant details of ${this._restaurant.name}`
