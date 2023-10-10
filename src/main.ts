@@ -9,7 +9,7 @@ import { getPage, removePreviousPage } from "./utils/routes";
 import { parseActiveUrl } from "./utils/urlParser";
 
 window.addEventListener("hashchange", () => {
-  const url = parseActiveUrl();
+  const url = parseActiveUrl(true) as string;
   const page = getPage(url);
 
   removePreviousPage();
@@ -17,7 +17,7 @@ window.addEventListener("hashchange", () => {
 });
 
 window.addEventListener("load", () => {
-  const url = parseActiveUrl();
+  const url = parseActiveUrl(true) as string;
   const page = getPage(url);
 
   Layouts();

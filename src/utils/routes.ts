@@ -1,3 +1,4 @@
+import { Details } from "../pages/details";
 import { Favourite } from "../pages/favourite";
 import { Home } from "../pages/home";
 
@@ -18,6 +19,10 @@ const getPage = (url: string): (() => void) => {
 
     case "/favourite":
       page = Favourite;
+      break;
+
+    case "/restaurants/:id":
+      page = Details;
       break;
 
     default: {
