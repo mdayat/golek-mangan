@@ -22,4 +22,4 @@ interface Restaurant {
   customerReviews: CustomerReviews[];
 }
 
-export type { Restaurant };
+export type { Restaurant, CustomerReviews, RestaurantMenus };

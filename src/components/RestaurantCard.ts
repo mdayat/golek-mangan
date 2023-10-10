@@ -29,7 +29,7 @@ class RestaurantCard extends HTMLElement {
       "src",
       `${IMAGE_ENDPOINT}${this._restaurant.pictureId}`
     );
-    restaurantImage.setAttribute("alt", "");
+    restaurantImage.setAttribute("alt", this._restaurant.name);
     restaurantImage.setAttribute("class", "restaurant-image");
     this.appendChild(restaurantImage);
 

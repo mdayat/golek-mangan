@@ -23,6 +23,7 @@ const Details = () => {
         "restaurant-details"
       ) as RestaurantDetails;
       restaurantDetails.restaurant = restaurant as Restaurant;
+      mainContent.appendChild(restaurantDetails);
     }
   );
 };

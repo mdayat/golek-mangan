@@ -6,9 +6,7 @@
 
   /* Headline */
   .headline {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    place-items: center;
     gap: 0 16px;
     margin: 0 56px;
   }
@@ -26,15 +24,29 @@
     gap: 24px;
   }
 
-  .restaurant-details > div > p:first-child {
-    font-size: 16px;
+  .restaurant-headline {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 16px;
+    margin: 0 56px;
   }
-  .restaurant-details-name {
-    font-size: 24px;
-    margin-bottom: 12px;
+  .restaurant-headline div {
+    order: 1;
+    margin: 0;
   }
-  .restaurant-details-description {
-    font-size: 16px;
+  .restaurant-headline-description {
+    height: 200px;
+    overflow-y: scroll;
+    overscroll-behavior-y: contain;
+  }
+  .restaurant-headline-image {
+    order: 2;
+    max-width: 425px;
+    height: 250px;
+  }
+
+  .detail-review-container {
+    margin-left: 56px;
+    margin-right: 56px;
   }
 }
 
@@ -80,6 +92,18 @@
   .restaurants-container h2 {
     font-size: 32px;
   }
+
+  .restaurant-headline {
+    margin: 0 80px;
+  }
+
+  .detail-review-container {
+    margin-left: 80px;
+    margin-right: 80px;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0 16px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -104,6 +128,15 @@
   .not-found-description {
     font-size: 18px;
   }
+
+  .restaurant-headline {
+    margin: 0 104px;
+  }
+
+  .detail-review-container {
+    margin-left: 104px;
+    margin-right: 104px;
+  }
 }
 @media screen and (min-width: 1440px) {
   nav {
@@ -117,5 +150,14 @@
 
   .restaurants-container {
     padding: 24px 128px;
+  }
+
+  .restaurant-headline {
+    margin: 0 128px;
+  }
+
+  .detail-review-container {
+    margin-left: 128px;
+    margin-right: 128px;
   }
 }

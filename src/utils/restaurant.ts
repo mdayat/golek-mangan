@@ -45,7 +45,7 @@ const getRestaurants = (
       .finally(() => {
         loading.remove();
       });
-  }, 750);
+  }, 500);
 };
 
 const getRestaurantDetails = (
@@ -74,7 +74,7 @@ const getRestaurantDetails = (
       .finally(() => {
         loading.remove();
       });
-  }, 0);
+  }, 500);
 };
 
 export { getRestaurants, getRestaurantDetails };

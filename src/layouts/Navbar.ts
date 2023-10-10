@@ -9,8 +9,8 @@ const handleNavbarFunctionalities = (navbar: HTMLElement) => {
     "hamburger-menu"
   )[0] as HTMLButtonElement;
 
-  const MenuItems = navigationMenu.getElementsByTagName("a");
-  const focusableElements = [hamburgerMenu, ...MenuItems] as HTMLElement[];
+  const menuItems = navigationMenu.getElementsByTagName("a");
+  const focusableElements = [hamburgerMenu, ...menuItems] as HTMLElement[];
 
   const focusTrapContainer = navbar;
   const { addFocusTrap, removeFocusTrap } = focusTrap(
@@ -31,8 +31,8 @@ const handleNavbarFunctionalities = (navbar: HTMLElement) => {
     removeFocusTrap();
     window.removeEventListener("click", handleClickOutside);
     window.removeEventListener("resize", handleResizeWindow);
-    for (let index = 0; index < MenuItems.length; index++) {
-      MenuItems[index]?.removeEventListener(
+    for (let index = 0; index < menuItems.length; index++) {
+      menuItems[index]?.removeEventListener(
         "click",
         handleClickNavigationMenuItem
       );
@@ -90,8 +90,8 @@ const handleNavbarFunctionalities = (navbar: HTMLElement) => {
 
       window.addEventListener("click", handleClickOutside);
       window.addEventListener("resize", handleResizeWindow);
-      for (let index = 0; index < MenuItems.length; index++) {
-        MenuItems[index]?.addEventListener(
+      for (let index = 0; index < menuItems.length; index++) {
+        menuItems[index]?.addEventListener(
           "click",
           handleClickNavigationMenuItem
         );
@@ -101,7 +101,7 @@ const handleNavbarFunctionalities = (navbar: HTMLElement) => {
 };
 
 const createMenuItems = (): HTMLLIElement[] => {
-  const MenuItems: HTMLLIElement[] = [];
+  const menuItems: HTMLLIElement[] = [];
 
   for (let index = 1; index <= 3; index++) {
     const menuItem = document.createElement("li");
@@ -133,10 +133,10 @@ const createMenuItems = (): HTMLLIElement[] => {
       }
     }
 
-    MenuItems.push(menuItem);
+    menuItems.push(menuItem);
   }
 
-  return MenuItems;
+  return menuItems;
 };
 
 const Navbar = (): HTMLElement => {
@@ -170,9 +170,9 @@ const Navbar = (): HTMLElement => {
   navigationMenu.setAttribute("class", "navigation-menu");
   navElement.appendChild(navigationMenu);
 
-  const MenuItems = createMenuItems();
-  for (let index = 0; index < MenuItems.length; index++) {
-    navigationMenu.appendChild(MenuItems[index] as HTMLLIElement);
+  const menuItems = createMenuItems();
+  for (let index = 0; index < menuItems.length; index++) {
+    navigationMenu.appendChild(menuItems[index] as HTMLLIElement);
   }
 
   handleNavbarFunctionalities(navElement);
