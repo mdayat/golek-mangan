@@ -1,23 +1,27 @@
+import "../components/restaurant/Card";
+
 import { HeadlineArticle } from "../components/HeadlineArticle";
 import { Loading } from "../components/Loading";
 import { getRestaurants } from "../utils/restaurant";
-import type { RestaurantCard } from "../components/RestaurantCard";
 
-const handleHomePageFunctionalities = (homePageContent: HTMLElement) => {
-  const restaurantsContainer = homePageContent.getElementsByClassName(
+import type { RestaurantCard } from "../components/restaurant/Card";
+import type { Restaurant } from "../types/restaurant";
+
+const handleHomePageFunctionalities = (mainContent: HTMLElement) => {
+  const restaurantsContainer = mainContent.getElementsByClassName(
     "restaurants-container"
   )[0] as HTMLElement;
 
-  getRestaurants(Loading(restaurantsContainer), (restaurants, errorMessage) => {
-    if (errorMessage !== "") {
+  getRestaurants(Loading(restaurantsContainer), (restaurants, isError) => {
+    if (restaurants === null && isError) {
       const notfound = document.createElement("p");
-      notfound.textContent = errorMessage;
+      notfound.textContent = "Sorry... there is no restaurants here";
       notfound.style.color = "#fff";
       restaurantsContainer.appendChild(notfound);
       return;
     }
 
-    for (const restaurant of restaurants) {
+    for (const restaurant of restaurants as Restaurant[]) {
       const restaurantCard = document.createElement(
         "restaurant-card"
       ) as RestaurantCard;
@@ -33,21 +37,19 @@ const Home = () => {
   )[0] as HTMLTitleElement;
   titleElement.textContent = "Golek Mangan";
 
-  const homePageContent = document.getElementsByTagName(
-    "main"
-  )[0] as HTMLElement;
+  const mainContent = document.getElementsByTagName("main")[0] as HTMLElement;
   const headlineArticle = HeadlineArticle();
-  homePageContent.appendChild(headlineArticle);
+  mainContent.appendChild(headlineArticle);
 
   const restaurantsContainer = document.createElement("section");
   restaurantsContainer.setAttribute("class", "restaurants-container");
-  homePageContent.appendChild(restaurantsContainer);
+  mainContent.appendChild(restaurantsContainer);
 
   const restaurantsContainerTitle = document.createElement("h2");
   restaurantsContainerTitle.textContent = "Explore Restaurants";
   restaurantsContainer.appendChild(restaurantsContainerTitle);
 
-  handleHomePageFunctionalities(homePageContent);
+  handleHomePageFunctionalities(mainContent);
 };
 
 export { Home };

@@ -257,6 +257,7 @@ nav {
   order: 1;
   display: block;
   width: 100%;
+  max-width: 480px;
   object-fit: cover;
   object-position: center;
   border-radius: 8px;
@@ -294,28 +295,28 @@ nav {
 }
 
 /* Customer Review */
-.restaurant-reviews {
+.reviews-container {
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
 }
-.restaurant-reviews-title {
+.reviews-title {
   font-weight: bold;
   font-size: 20px;
   text-align: center;
   margin-bottom: 24px;
 }
-.restaurant-reviews > article {
+.reviews-container > article {
   background-color: #e4e4e7;
   padding: 16px;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin-bottom: 18px;
 }
-.restaurant-reviews > article:last-child {
+.reviews-container > article:last-child {
   margin-bottom: 0;
 }
-.restaurant-reviews > article > div {
+.reviews-container > article > div {
   display: flex;
   justify-content: space-between;
   align-items: center;

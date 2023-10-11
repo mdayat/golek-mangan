@@ -1,4 +1,4 @@
-import { Details } from "../pages/details";
+import { Details } from "../pages/restaurant-details";
 import { Favourite } from "../pages/favourite";
 import { Home } from "../pages/home";
 

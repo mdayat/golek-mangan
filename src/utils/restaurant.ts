@@ -2,7 +2,7 @@ import { API_ENDPOINT } from "./config";
 import type { Restaurant } from "../types/restaurant";
 import type { LoadingReturnType } from "../components/Loading";
 
-type Callback<T> = (data: T, errorMessage: string) => void;
+type Callback<T> = (data: T | null, isError: boolean) => void;
 
 interface RestaurantsResponse {
   error: boolean;
@@ -21,23 +21,20 @@ const getRestaurants = (
   loading: LoadingReturnType,
   callback: Callback<Restaurant[]>
 ) => {
+  let restaurants: Restaurant[] | null = null;
   loading.show();
-
-  let restaurants: Restaurant[] = [];
-  let errorMessage = "";
 
   setTimeout(() => {
     fetch(`${API_ENDPOINT}list`, { method: "GET" })
       .then((response) => response.json())
       .then((data: RestaurantsResponse) => {
         if (data.error) {
-          errorMessage = "Sorry! There is no Restaurants";
-          callback(restaurants, errorMessage);
+          callback(restaurants, data.error);
           return;
         }
 
         restaurants = data.restaurants;
-        callback(restaurants, errorMessage);
+        callback(restaurants, data.error);
       })
       .catch((error) => {
         console.log(error);
@@ -51,7 +48,7 @@ const getRestaurants = (
 const getRestaurantDetails = (
   restaurantId: string,
   loading: LoadingReturnType,
-  callback: (restaurant: Restaurant | null, isError: boolean) => void
+  callback: Callback<Restaurant>
 ) => {
   let restaurant: Restaurant | null = null;
   loading.show();

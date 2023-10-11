@@ -1,6 +1,5 @@
-import "./RestaurantDetails";
-import { IMAGE_ENDPOINT } from "../utils/config";
-import type { Restaurant } from "../types/restaurant";
+import { IMAGE_ENDPOINT } from "../../utils/config";
+import type { Restaurant } from "../../types/restaurant";
 
 class RestaurantCard extends HTMLElement {
   _restaurant: Restaurant = {
