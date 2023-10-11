@@ -9,6 +9,9 @@ import { parseActiveUrl } from "../utils/urlParser";
 import type { SplittedUrl } from "../utils/urlParser";
 
 const restaurantDetailsPageFunctionalities = (mainContent: HTMLElement) => {
+  const titleElement = document.getElementsByTagName(
+    "title"
+  )[0] as HTMLTitleElement;
   const url = parseActiveUrl(false) as SplittedUrl;
 
   getRestaurantDetails(
@@ -17,8 +20,11 @@ const restaurantDetailsPageFunctionalities = (mainContent: HTMLElement) => {
     (restaurant, isError) => {
       if (restaurant === null || isError) {
         mainContent.appendChild(PageNotFound());
+        titleElement.textContent = "Page Not Found";
         return;
       }
+
+      titleElement.textContent = `Restaurant - ${restaurant.name}`;
 
       const restaurantHeadline = RestaurantHeadline(
         restaurant.name,
