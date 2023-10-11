@@ -356,6 +356,24 @@ nav {
   text-decoration: underline;
 }
 
+/* Empty Restaurant */
+.empty-restaurant {
+  display: grid;
+  place-items: center;
+}
+.empty-restaurant > svg {
+  width: 80px;
+  height: 80px;
+  fill: var(--green);
+  margin-bottom: 32px;
+}
+.empty-restaurant > p {
+  color: var(--white);
+  font-weight: bold;
+  font-size: 24px;
+  line-height: normal;
+}
+
 /* Footer */
 footer {
   background-color: var(--dark-blue);

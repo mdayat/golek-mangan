@@ -8,7 +8,7 @@ import { parseActiveUrl } from "../utils/urlParser";
 
 import type { SplittedUrl } from "../utils/urlParser";
 
-const handleDetailsPageFunctionalities = (mainContent: HTMLElement) => {
+const restaurantDetailsPageFunctionalities = (mainContent: HTMLElement) => {
   const url = parseActiveUrl(false) as SplittedUrl;
 
   getRestaurantDetails(
@@ -46,7 +46,7 @@ const handleDetailsPageFunctionalities = (mainContent: HTMLElement) => {
 
 const Details = () => {
   const mainContent = document.getElementsByTagName("main")[0] as HTMLElement;
-  handleDetailsPageFunctionalities(mainContent);
+  restaurantDetailsPageFunctionalities(mainContent);
 };
 
 export { Details };
