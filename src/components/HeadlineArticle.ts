@@ -12,7 +12,7 @@ const HeadlineArticle = (): HTMLElement => {
 
   const headlineDescription = document.createElement("p");
   headlineDescription.setAttribute("class", "headline-description");
-  headlineDescription.textContent = `Golek Mangan is Javanese which means "Foraging for Food". As the name suggests, Golek Mangan is an application for finding "food" or restaurants in East Java. These restaurants are selected and assessed by our expert teams so they can be ensured that they meet the standards.`;
+  headlineDescription.textContent = `Golek Mangan is Javanese which means "Foraging for Food". As the name suggests, Golek Mangan is an application for finding "food" or restaurants in Indonesia. These restaurants are selected and assessed by our expert teams so they can be ensured that they meet the standards.`;
   divElement.appendChild(headlineDescription);
 
   const headlineImage = document.createElement("img");

@@ -2,7 +2,7 @@
   "name": "golek-mangan",
   "version": "1.0.0",
   "type": "module",
-  "description": "An app to search restaurants in East Java",
+  "description": "application to search Restaurants in Indonesia",
   "main": "main.ts",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
