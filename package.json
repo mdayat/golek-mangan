@@ -7,6 +7,7 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack serve --config webpack.dev.js",
+    "serve": "http-server dist -p 3000",
     "check-lint": "pnpm eslint ."
   },
   "author": "Muhammad Nur Hidayat",
@@ -31,6 +32,7 @@
     "webpack-merge": "^5.9.0"
   },
   "dependencies": {
+    "http-server": "^14.1.1",
     "idb": "^7.1.1"
   }
 }
