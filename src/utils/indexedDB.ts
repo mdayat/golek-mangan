@@ -1,6 +1,6 @@
 import { openDB } from "idb";
-import { DATABASE_NAME, DATABASE_VERSION, OBJECT_STORE_NAME } from "../config";
-import type { Restaurant } from "../../types/restaurant";
+import { DATABASE_NAME, DATABASE_VERSION, OBJECT_STORE_NAME } from "./config";
+import type { Restaurant } from "../types/restaurant";
 
 const indexedDB = openDB(DATABASE_NAME, DATABASE_VERSION, {
   upgrade(database) {
