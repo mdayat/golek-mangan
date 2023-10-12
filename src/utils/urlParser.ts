@@ -4,9 +4,14 @@ interface SplittedUrl {
 }
 
 const parseActiveUrl = (withCombiner: boolean): string | SplittedUrl => {
-  const url = "/" + window.location.href.split("#")[1];
-  const splittedUrl = splitUrl(url);
+  let url = window.location.href.split("#")[1];
+  if (url === undefined || url === "") {
+    url = "/";
+  } else {
+    url = "/" + url;
+  }
 
+  const splittedUrl = splitUrl(url);
   if (withCombiner) {
     const combinedUrl = combineUrl(splittedUrl);
     return combinedUrl;

@@ -6,6 +6,7 @@ import "./styles/responsive.css";
 import { Layouts } from "./layouts/index";
 import { getPage, removePreviousPage } from "./utils/routes";
 import { parseActiveUrl } from "./utils/urlParser";
+import { registerServiceWorker } from "./utils/serviceWorker/register";
 
 window.addEventListener("hashchange", () => {
   const url = parseActiveUrl(true) as string;
@@ -21,4 +22,6 @@ window.addEventListener("load", () => {
 
   Layouts();
   page();
+
+  registerServiceWorker();
 });
