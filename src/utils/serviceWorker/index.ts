@@ -1,16 +1,13 @@
-self.addEventListener("install", () => {
-  console.log("Installing service worker...");
-  // Caching App Shell resources
+import { deleteOldCache, preCache, revalidateCache } from "./cache";
+
+self.addEventListener("install", (event: ExtendableEvent) => {
+  event.waitUntil(preCache());
 });
 
-self.addEventListener("activate", () => {
-  console.log("Activating service worker");
-  // Delete old changes
+self.addEventListener("activate", (event: ExtendableEvent) => {
+  event.waitUntil(deleteOldCache());
 });
 
-// Turning off eslint rules because TypeScript hasn't supported types for service worker yet
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-self.addEventListener("fetch", (event: any) => {
-  /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */
-  console.log(event.request);
+self.addEventListener("fetch", (event: FetchEvent) => {
+  event.respondWith(revalidateCache(event.request));
 });

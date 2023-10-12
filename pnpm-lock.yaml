@@ -8,6 +8,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.7.2
     version: 20.7.2
+  '@types/serviceworker':
+    specifier: ^0.0.75
+    version: 0.0.75
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.7.3
     version: 6.7.3(@typescript-eslint/parser@6.7.3)(eslint@8.50.0)(typescript@5.2.2)
@@ -338,6 +341,10 @@ packages:
       '@types/http-errors': 2.0.2
       '@types/mime': 3.0.2
       '@types/node': 20.7.2
+    dev: true
+
+  /@types/serviceworker@0.0.75:
+    resolution: {integrity: sha512-9EWgthH8CNB8uWqGM1w+n4dM+l0VtA+NbzZx4wp8vpiWAzz69zoRlk+5ztd7fAARZs4QLgHfi2Zi/rB7ZhcRvw==}
     dev: true
 
   /@types/sockjs@0.3.34:

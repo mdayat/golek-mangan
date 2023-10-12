@@ -143,7 +143,7 @@ const createMenuItems = (): HTMLLIElement[] => {
 const Navbar = (): HTMLElement => {
   const navElement = document.createElement("nav");
   const golekManganLogo = document.createElement("img");
-  golekManganLogo.setAttribute("src", "./logo.png");
+  golekManganLogo.setAttribute("src", "./icons/icon-512x512.png");
   golekManganLogo.setAttribute("alt", "Golek Mangan Logo");
   golekManganLogo.setAttribute("class", "logo");
   navElement.appendChild(golekManganLogo);

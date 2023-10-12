@@ -28,7 +28,7 @@ const config = [
   {
     files: ["src/**/*.ts"],
     linterOptions: {
-      noInlineConfig: false,
+      noInlineConfig: true,
       reportUnusedDisableDirectives: true,
     },
     languageOptions: {
