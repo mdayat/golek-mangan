@@ -34,7 +34,7 @@ const deleteOldCache = async () => {
   }
 };
 
-const revalidateCache = async (request: Request) => {
+const revalidateCache = async (request: Request | string) => {
   const cachedResponse = await caches.match(request);
 
   if (cachedResponse) {
@@ -45,12 +45,12 @@ const revalidateCache = async (request: Request) => {
   return fetchRequest(request);
 };
 
-const addCache = async (request: Request) => {
+const addCache = async (request: Request | string) => {
   const cache = await caches.open(CACHE_NAME);
   await cache.add(request);
 };
 
-const fetchRequest = async (request: Request) => {
+const fetchRequest = async (request: Request | string) => {
   const response = await fetch(request);
 
   if (response.status !== 200) {

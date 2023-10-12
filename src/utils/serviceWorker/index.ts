@@ -9,5 +9,9 @@ self.addEventListener("activate", (event: ExtendableEvent) => {
 });
 
 self.addEventListener("fetch", (event: FetchEvent) => {
-  event.respondWith(revalidateCache(event.request));
+  if (event.request.destination === "image") {
+    event.respondWith(revalidateCache(event.request.url));
+  } else {
+    event.respondWith(revalidateCache(event.request));
+  }
 });
