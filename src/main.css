@@ -374,6 +374,27 @@ nav {
   line-height: normal;
 }
 
+/* Favourite Button */
+.favourite-button {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0 8px;
+  border-radius: 8px;
+  height: 44px;
+  background-color: var(--green);
+  color: var(--white);
+  font-weight: bold;
+  padding: 0 16px;
+  margin: 80px auto 0;
+}
+.favourite-button svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--white);
+}
+
 /* Footer */
 footer {
   background-color: var(--dark-blue);
@@ -382,6 +403,6 @@ footer {
   place-items: center;
 }
 footer p {
-  color: white;
+  color: var(--white);
   font-weight: bold;
 }

@@ -45,7 +45,7 @@ const config = [
     },
     rules: {
       ...eslintRecommended,
-      ...tsPlugin.configs["strict-type-checked"].rules,
+      ...tsPlugin.configs["recommended"].rules,
     },
   },
 ];

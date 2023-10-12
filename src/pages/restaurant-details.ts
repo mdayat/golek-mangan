@@ -7,12 +7,13 @@ import { getRestaurantDetails } from "../utils/restaurant";
 import { parseActiveUrl } from "../utils/urlParser";
 
 import type { SplittedUrl } from "../utils/urlParser";
+import { FavouriteButton } from "../components/restaurant/FavouriteButton";
 
 const restaurantDetailsPageFunctionalities = (mainContent: HTMLElement) => {
+  const url = parseActiveUrl(false) as SplittedUrl;
   const titleElement = document.getElementsByTagName(
     "title"
   )[0] as HTMLTitleElement;
-  const url = parseActiveUrl(false) as SplittedUrl;
 
   getRestaurantDetails(
     url.dynamicPath,
@@ -46,6 +47,9 @@ const restaurantDetailsPageFunctionalities = (mainContent: HTMLElement) => {
 
       const reviewsElement = RestaurantReviews(restaurant.customerReviews);
       detailAndReviewContainer.appendChild(reviewsElement);
+
+      const favouriteButton = FavouriteButton(restaurant);
+      mainContent.appendChild(favouriteButton);
     }
   );
 };
