@@ -59,13 +59,13 @@
   .hamburger-menu {
     display: none;
   }
-  .navigation-menu {
+  .nav-menu {
     visibility: visible;
     height: fit-content;
     flex-direction: row;
     flex-basis: content;
   }
-  .navigation-menu a {
+  .nav-menu a {
     padding: 12px 16px;
     font-size: 18px;
   }

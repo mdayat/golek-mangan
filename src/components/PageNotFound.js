@@ -9,7 +9,7 @@ const PageNotFound = () => {
 
   const notFoundDescription = document.createElement('p');
   notFoundDescription.setAttribute('class', 'not-found-description');
-  notFoundDescription.textContent = 'Sorry... the page that you are looking for does not exist! Please refer to our navigation menu or ';
+  notFoundDescription.textContent = `Sorry... the page that you are looking for does not exist! Please refer to our navigation menu or `;
   notFoundContainer.appendChild(notFoundDescription);
 
   const recoveryTextFromNotFound = document.createElement('a');

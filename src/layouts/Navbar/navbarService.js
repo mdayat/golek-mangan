@@ -1,38 +1,41 @@
-import { focusTrap } from '../utils/focusTrap';
+import { focusTrap } from '../../utils/focusTrap';
 
-const openNavigationMenu = (navigationMenu) => {
-  navigationMenu.classList.add('open-navigation-menu');
+const openNavMenu = (navMenu) => {
+  navMenu.classList.add('open-nav-menu');
 };
 
-const closeNavigationMenu = (navigationMenu) => {
-  navigationMenu.classList.remove('open-navigation-menu');
+const closeNavMenu = (navMenu) => {
+  navMenu.classList.remove('open-nav-menu');
 };
 
 const navbarServices = (navElement) => {
-  const navigationMenu = navElement.getElementsByClassName('navigation-menu')[0];
+  const navMenu = navElement.getElementsByClassName('nav-menu')[0];
   const hamburgerMenu = navElement.getElementsByClassName('hamburger-menu')[0];
 
-  const menuItems = navigationMenu.getElementsByTagName('a');
+  const menuItems = navMenu.getElementsByTagName('a');
   const focusableElements = [hamburgerMenu, ...menuItems];
   const focusTrapContainer = navElement;
 
-  const { addFocusTrap, removeFocusTrap } = focusTrap(focusTrapContainer, focusableElements);
+  const { addFocusTrap, removeFocusTrap } = focusTrap(
+    focusTrapContainer,
+    focusableElements,
+  );
 
-  const pressNavigationMenuItem = (event) => {
+  const pressNavMenuItem = (event) => {
     if (event.key === 'Enter') {
       event.stopPropagation();
 
       removeFocusTrap();
-      closeNavigationMenu(navigationMenu);
+      closeNavMenu(navMenu);
     }
   };
 
   // Close menu when its item is clicked
-  const clickNavigationMenuItem = (event) => {
+  const clickNavMenuItem = (event) => {
     event.stopPropagation();
 
     removeFocusTrap();
-    closeNavigationMenu(navigationMenu);
+    closeNavMenu(navMenu);
   };
 
   // Close menu when clicking outside of menu
@@ -44,38 +47,38 @@ const navbarServices = (navElement) => {
 
     if (isClickedOutside) {
       removeFocusTrap();
-      closeNavigationMenu(navigationMenu);
+      closeNavMenu(navMenu);
     }
   };
 
   // Close menu when viewport is >= 1024
   const resizeWindow = () => {
     if (window.innerWidth < 1024) return;
-    const isMenuOpened = navigationMenu.classList.value.includes('open-navigation-menu');
+    const isMenuOpened = navMenu.classList.value.includes('open-nav-menu');
 
     if (isMenuOpened) {
       removeFocusTrap();
-      closeNavigationMenu(navigationMenu);
+      closeNavMenu(navMenu);
     }
   };
 
   hamburgerMenu.addEventListener('click', (event) => {
     event.stopPropagation();
-    const isMenuOpened = navigationMenu.classList.value.includes('open-navigation-menu');
+    const isMenuOpened = navMenu.classList.value.includes('open-nav-menu');
 
     if (isMenuOpened) {
       removeFocusTrap();
-      closeNavigationMenu(navigationMenu);
+      closeNavMenu(navMenu);
     } else {
-      openNavigationMenu(navigationMenu);
+      openNavMenu(navMenu);
       addFocusTrap();
       hamburgerMenu.focus();
 
       window.addEventListener('click', clickOutside);
       window.addEventListener('resize', resizeWindow);
       for (let i = 0; i < menuItems.length; i++) {
-        menuItems[i].addEventListener('click', clickNavigationMenuItem);
-        menuItems[i].addEventListener('keydown', pressNavigationMenuItem);
+        menuItems[i].addEventListener('click', clickNavMenuItem);
+        menuItems[i].addEventListener('keydown', pressNavMenuItem);
       }
     }
   });

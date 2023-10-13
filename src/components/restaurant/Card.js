@@ -14,7 +14,7 @@ class RestaurantCard extends HTMLElement {
     const restaurantImage = document.createElement('img');
     restaurantImage.setAttribute(
       'src',
-      `${IMAGE_ENDPOINT}${this.#restaurant.pictureId}`
+      `${IMAGE_ENDPOINT}${this.#restaurant.pictureId}`,
     );
     restaurantImage.setAttribute('alt', this.#restaurant.name);
     restaurantImage.setAttribute('class', 'restaurant-image');
@@ -48,7 +48,7 @@ class RestaurantCard extends HTMLElement {
     anchorElement.setAttribute('href', `#restaurants/${this.#restaurant.id}`);
     anchorElement.setAttribute(
       'aria-label',
-      `Open restaurant details of ${this.#restaurant.name}`
+      `Open restaurant details of ${this.#restaurant.name}`,
     );
     anchorElement.textContent = 'Details';
     this.appendChild(anchorElement);

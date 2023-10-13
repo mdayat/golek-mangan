@@ -1,5 +1,5 @@
 import { MenuItems } from './MenuItems';
-import { navbarServices } from '../../services/navbar';
+import { navbarServices } from './navbarService';
 import { SVG_NAMESPACE } from '../../utils/config';
 
 const Navbar = () => {
@@ -28,13 +28,13 @@ const Navbar = () => {
   );
   hamburgerMenuSvg.appendChild(hamburgerMenuSvgPath);
 
-  const navigationMenu = document.createElement('ul');
-  navigationMenu.setAttribute('class', 'navigation-menu');
-  navElement.appendChild(navigationMenu);
+  const navMenu = document.createElement('ul');
+  navMenu.setAttribute('class', 'nav-menu');
+  navElement.appendChild(navMenu);
 
   const menuItems = MenuItems();
   menuItems.forEach((menuItem) => {
-    navigationMenu.appendChild(menuItem);
+    navMenu.appendChild(menuItem);
   });
 
   navbarServices(navElement);

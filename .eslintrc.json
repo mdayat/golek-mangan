@@ -19,6 +19,9 @@
     "import/prefer-default-export": "off",
 
     // I don't think the "++" operator is bad in all cases.
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+
+    // I agree with single quote rules, but i don't think template literals need to be prohibited
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }]
   }
 }
