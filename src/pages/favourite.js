@@ -6,14 +6,14 @@ const favourteFunctionalities = (mainContent) => {
     'restaurants-container',
   )[0];
 
-  getFavouriteRestaurants().then((favouriteRestaurants) => {
-    if (favouriteRestaurants.length === 0) {
+  getFavouriteRestaurants().then((favouritedRestaurants) => {
+    if (favouritedRestaurants.length === 0) {
       const emptyRestaurant = EmptyRestaurant();
       restaurantsContainer.appendChild(emptyRestaurant);
       return;
     }
 
-    favouriteRestaurants.forEach((favouriteRestaurant) => {
+    favouritedRestaurants.forEach((favouriteRestaurant) => {
       const restaurantCard = document.createElement('restaurant-card');
       restaurantCard.restaurant = favouriteRestaurant;
       restaurantsContainer.appendChild(restaurantCard);

@@ -26,9 +26,16 @@ const getFavouriteRestaurant = (restaurantId) => {
   return promise;
 };
 
-const getFavouriteRestaurants = async () => {
-  const restaurants = (await indexedDB).getAll(OBJECT_STORE_NAME);
-  return restaurants;
+const getFavouriteRestaurants = () => {
+  const promise = new Promise((resolved) => {
+    indexedDB.then((db) => {
+      db.getAll(OBJECT_STORE_NAME).then((values) => {
+        resolved(values);
+      });
+    });
+  });
+
+  return promise;
 };
 
 const addFavouriteRestaurant = (restaurant) => {
@@ -65,7 +72,6 @@ const deleteFavouriteRestaurant = (restaurantId) => {
 };
 
 export {
-  indexedDB,
   getFavouriteRestaurant,
   getFavouriteRestaurants,
   addFavouriteRestaurant,
