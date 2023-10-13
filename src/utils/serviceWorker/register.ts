@@ -6,9 +6,7 @@ const registerServiceWorker = () => {
 
   navigator.serviceWorker
     .register("./serviceWorker.js")
-    .then((registration) => {
-      console.log(registration);
-    })
+    .then()
     .catch((error) => {
       console.log("Failed to register service worker", error);
     });

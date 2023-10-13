@@ -10,10 +10,12 @@ import { registerServiceWorker } from "./utils/serviceWorker/register";
 
 window.addEventListener("hashchange", () => {
   const url = parseActiveUrl(true) as string;
-  const page = getPage(url);
 
-  removePreviousPage();
-  page();
+  if (url !== "/main-content") {
+    const page = getPage(url);
+    removePreviousPage();
+    page();
+  }
 });
 
 window.addEventListener("load", () => {
