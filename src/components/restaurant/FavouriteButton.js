@@ -35,38 +35,47 @@ const HeartUnfillIcon = () => {
   return heartUnfillSvg;
 };
 
+const appendHeartFill = (favouriteButton) => {
+  const heartFillIcon = HeartFillIcon();
+  favouriteButton.appendChild(heartFillIcon);
+  favouriteButton.insertAdjacentText('beforeend', 'Remove from Favourite');
+};
+
+const appendHeartUnfill = (favouriteButton) => {
+  const heartUnfillIcon = HeartUnfillIcon();
+  favouriteButton.appendChild(heartUnfillIcon);
+  favouriteButton.insertAdjacentText('beforeend', 'Add to Favourite');
+};
+
 const favouriteButtonFunctionalities = (favouriteButton, restaurant) => {
-  getFavouriteRestaurant(restaurant.id).then((favouritedRestaurant) => {
-    if (favouritedRestaurant === undefined) {
-      const heartUnfillIcon = HeartUnfillIcon();
-      favouriteButton.appendChild(heartUnfillIcon);
-      favouriteButton.insertAdjacentText('beforeend', 'Add to Favourite');
-    } else {
-      const heartFillIcon = HeartFillIcon();
-      favouriteButton.appendChild(heartFillIcon);
-      favouriteButton.insertAdjacentText('beforeend', 'Remove from Favourite');
-    }
-  });
+  getFavouriteRestaurant(restaurant.id)
+    .then(() => {
+      appendHeartFill(favouriteButton);
+    })
+    .catch(() => {
+      appendHeartUnfill(favouriteButton);
+    });
 
-  favouriteButton.addEventListener('click', async () => {
-    const favouritedRestaurant = await getFavouriteRestaurant(restaurant.id);
-
+  favouriteButton.addEventListener('click', () => {
     // Remove all its child if any
-    while (favouriteButton.firstChild) {
-      favouriteButton.removeChild(favouriteButton.firstChild);
-    }
 
-    if (favouritedRestaurant !== undefined) {
-      await deleteFavouriteRestaurant(restaurant.id);
-      const heartUnfillIcon = HeartUnfillIcon();
-      favouriteButton.appendChild(heartUnfillIcon);
-      favouriteButton.insertAdjacentText('beforeend', 'Add to Favourite');
-    } else {
-      await addFavouriteRestaurant(restaurant);
-      const heartFillIcon = HeartFillIcon();
-      favouriteButton.appendChild(heartFillIcon);
-      favouriteButton.insertAdjacentText('beforeend', 'Remove from Favourite');
-    }
+    getFavouriteRestaurant(restaurant.id)
+      .then(() => {
+        deleteFavouriteRestaurant(restaurant.id).then(() => {
+          while (favouriteButton.firstChild) {
+            favouriteButton.removeChild(favouriteButton.firstChild);
+          }
+          appendHeartUnfill(favouriteButton);
+        });
+      })
+      .catch(() => {
+        addFavouriteRestaurant(restaurant).then(() => {
+          while (favouriteButton.firstChild) {
+            favouriteButton.removeChild(favouriteButton.firstChild);
+          }
+          appendHeartFill(favouriteButton);
+        });
+      });
   });
 };
 

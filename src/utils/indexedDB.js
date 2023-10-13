@@ -7,9 +7,23 @@ const indexedDB = openDB(DATABASE_NAME, DATABASE_VERSION, {
   },
 });
 
-const getFavouriteRestaurant = async (restaurantId) => {
-  const restaurant = (await indexedDB).get(OBJECT_STORE_NAME, restaurantId);
-  return restaurant;
+const getFavouriteRestaurant = (restaurantId) => {
+  let errMsg = '';
+
+  const promise = new Promise((resolved, rejected) => {
+    indexedDB.then((db) => {
+      db.get(OBJECT_STORE_NAME, restaurantId).then((favouritedRestaurant) => {
+        if (favouritedRestaurant === undefined) {
+          errMsg = `There is no restaurant you are looking for`;
+          rejected(errMsg);
+        } else {
+          resolved(favouritedRestaurant);
+        }
+      });
+    });
+  });
+
+  return promise;
 };
 
 const getFavouriteRestaurants = async () => {
@@ -17,12 +31,37 @@ const getFavouriteRestaurants = async () => {
   return restaurants;
 };
 
-const addFavouriteRestaurant = async (restaurant) => {
-  (await indexedDB).add(OBJECT_STORE_NAME, restaurant);
+const addFavouriteRestaurant = (restaurant) => {
+  let successMsg = '';
+  let errMsg = '';
+
+  const promise = new Promise((resolved, rejected) => {
+    indexedDB.then((db) => {
+      db.add(OBJECT_STORE_NAME, restaurant)
+        .then(() => {
+          successMsg = `Successfully added "${restaurant.name}" to Favourited Restaurant`;
+          resolved({ restaurantId: restaurant.id, successMsg });
+        })
+        .catch(() => {
+          errMsg = `Restaurant with the id of "${restaurant.id}" already added`;
+          rejected(errMsg);
+        });
+    });
+  });
+
+  return promise;
 };
 
-const deleteFavouriteRestaurant = async (restaurantId) => {
-  (await indexedDB).delete(OBJECT_STORE_NAME, restaurantId);
+const deleteFavouriteRestaurant = (restaurantId) => {
+  const promise = new Promise((resolved) => {
+    indexedDB.then((db) => {
+      db.delete(OBJECT_STORE_NAME, restaurantId).then((value) => {
+        resolved(value);
+      });
+    });
+  });
+
+  return promise;
 };
 
 export {
