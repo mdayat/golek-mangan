@@ -6,9 +6,7 @@ import { getRestaurants } from '../utils/restaurant';
 import { EmptyRestaurant } from '../components/restaurant/Empty';
 
 const handleHomeFunctionalities = (mainContent) => {
-  const restaurantsContainer = mainContent.getElementsByClassName(
-    'restaurants-container'
-  )[0];
+  const restaurantsContainer = mainContent.getElementsByClassName('restaurants-container')[0];
 
   getRestaurants(Loading(restaurantsContainer), (restaurants, isError) => {
     if (restaurants === null || isError) {
@@ -17,12 +15,11 @@ const handleHomeFunctionalities = (mainContent) => {
       return;
     }
 
-    // eslint-disable-next-line no-restricted-syntax
-    for (const restaurant of restaurants) {
+    restaurants.forEach((restaurant) => {
       const restaurantCard = document.createElement('restaurant-card');
       restaurantCard.restaurant = restaurant;
       restaurantsContainer.appendChild(restaurantCard);
-    }
+    });
   });
 };
 

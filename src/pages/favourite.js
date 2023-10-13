@@ -3,7 +3,7 @@ import { getFavouriteRestaurants } from '../utils/indexedDB';
 
 const favourteFunctionalities = (mainContent) => {
   const restaurantsContainer = mainContent.getElementsByClassName(
-    'restaurants-container'
+    'restaurants-container',
   )[0];
 
   getFavouriteRestaurants().then((favouriteRestaurants) => {
@@ -13,12 +13,11 @@ const favourteFunctionalities = (mainContent) => {
       return;
     }
 
-    // eslint-disable-next-line no-restricted-syntax
-    for (const restaurant of favouriteRestaurants) {
+    favouriteRestaurants.forEach((favouriteRestaurant) => {
       const restaurantCard = document.createElement('restaurant-card');
-      restaurantCard.restaurant = restaurant;
+      restaurantCard.restaurant = favouriteRestaurant;
       restaurantsContainer.appendChild(restaurantCard);
-    }
+    });
   });
 };
 
