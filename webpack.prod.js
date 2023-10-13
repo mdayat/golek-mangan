@@ -1,11 +1,10 @@
-import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
-import { merge } from "webpack-merge";
-import common from "./webpack.common.js";
+// eslint-disable-next-line import/no-extraneous-dependencies
+const { merge } = require('webpack-merge');
+const commonConfig = require('./webpack.common');
 
 const config = {
-  mode: "production",
-  devtool: "source-map",
-  plugins: [new ForkTsCheckerWebpackPlugin()],
+  mode: 'production',
+  devtool: 'source-map',
 };
 
-export default merge(common, config);
+module.exports = merge(commonConfig, config);

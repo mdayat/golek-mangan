@@ -1,0 +1,32 @@
+{
+  "extends": ["airbnb-base"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "rules": {
+    // The use of this rule should depend on the situation.
+    "arrow-body-style": ["error", "as-needed"],
+
+    // I would prefer to use "named export" instead of "default export" because it can help with consistency
+    // For example, Anna might imported like this: "import component from "./example-component.js",
+    // But John will do this instead: "import exampleComponent from "./example-component.js".
+    "import/prefer-default-export": "off",
+
+    "comma-dangle": "off",
+
+    // I don't think the "++" operator is bad in all cases.
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+
+    "no-use-before-define": [
+      "error",
+      {
+        "variables": false
+      }
+    ]
+  }
+}
