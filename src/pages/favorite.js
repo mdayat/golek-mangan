@@ -1,29 +1,29 @@
 import { EmptyRestaurant } from '../components/restaurant/Empty';
-import { getFavouriteRestaurants } from '../utils/indexedDB';
+import { getFavoriteRestaurants } from '../utils/indexedDB';
 
-const favourteFunctionalities = (mainContent) => {
+const favoriteFunctionalities = (mainContent) => {
   const restaurantsContainer = mainContent.getElementsByClassName(
     'restaurants-container',
   )[0];
 
-  getFavouriteRestaurants().then((favouritedRestaurants) => {
-    if (favouritedRestaurants.length === 0) {
+  getFavoriteRestaurants().then((favoritedRestaurants) => {
+    if (favoritedRestaurants.length === 0) {
       const emptyRestaurant = EmptyRestaurant();
       restaurantsContainer.appendChild(emptyRestaurant);
       return;
     }
 
-    favouritedRestaurants.forEach((favouriteRestaurant) => {
+    favoritedRestaurants.forEach((favoriteRestaurant) => {
       const restaurantCard = document.createElement('restaurant-card');
-      restaurantCard.restaurant = favouriteRestaurant;
+      restaurantCard.restaurant = favoriteRestaurant;
       restaurantsContainer.appendChild(restaurantCard);
     });
   });
 };
 
-const Favourite = () => {
+const Favorite = () => {
   const titleElement = document.getElementsByTagName('title')[0];
-  titleElement.textContent = 'Restaurant - Favourites';
+  titleElement.textContent = 'Restaurant - Favorites';
 
   const mainContent = document.getElementsByTagName('main')[0];
 
@@ -32,10 +32,10 @@ const Favourite = () => {
   mainContent.appendChild(restaurantsContainer);
 
   const restaurantsContainerTitle = document.createElement('h2');
-  restaurantsContainerTitle.textContent = 'Explore Favourite Restaurants';
+  restaurantsContainerTitle.textContent = 'Explore Favorite Restaurants';
   restaurantsContainer.appendChild(restaurantsContainerTitle);
 
-  favourteFunctionalities(mainContent);
+  favoriteFunctionalities(mainContent);
 };
 
-export { Favourite };
+export { Favorite };

@@ -1,5 +1,5 @@
 import { Details } from '../pages/restaurant-details';
-import { Favourite } from '../pages/favourite';
+import { Favorite } from '../pages/favorite';
 import { Home } from '../pages/home';
 import { NotFound } from '../pages/not-found';
 
@@ -18,8 +18,8 @@ const getPage = (url) => {
       page = Home;
       break;
 
-    case '/favourite':
-      page = Favourite;
+    case '/favorite':
+      page = Favorite;
       break;
 
     case '/restaurants/:id':

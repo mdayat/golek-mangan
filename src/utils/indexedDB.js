@@ -7,17 +7,17 @@ const indexedDB = openDB(DATABASE_NAME, DATABASE_VERSION, {
   },
 });
 
-const getFavouriteRestaurant = (restaurantId) => {
+const getFavoriteRestaurant = (restaurantId) => {
   let errMsg = '';
 
   const promise = new Promise((resolved, rejected) => {
     indexedDB.then((db) => {
-      db.get(OBJECT_STORE_NAME, restaurantId).then((favouritedRestaurant) => {
-        if (favouritedRestaurant === undefined) {
+      db.get(OBJECT_STORE_NAME, restaurantId).then((favoritedRestaurant) => {
+        if (favoritedRestaurant === undefined) {
           errMsg = `There is no restaurant you are looking for`;
           rejected(errMsg);
         } else {
-          resolved(favouritedRestaurant);
+          resolved(favoritedRestaurant);
         }
       });
     });
@@ -26,7 +26,7 @@ const getFavouriteRestaurant = (restaurantId) => {
   return promise;
 };
 
-const getFavouriteRestaurants = () => {
+const getFavoriteRestaurants = () => {
   const promise = new Promise((resolved) => {
     indexedDB.then((db) => {
       db.getAll(OBJECT_STORE_NAME).then((values) => {
@@ -38,7 +38,7 @@ const getFavouriteRestaurants = () => {
   return promise;
 };
 
-const addFavouriteRestaurant = (restaurant) => {
+const addFavoriteRestaurant = (restaurant) => {
   let successMsg = '';
   let errMsg = '';
 
@@ -46,7 +46,7 @@ const addFavouriteRestaurant = (restaurant) => {
     indexedDB.then((db) => {
       db.add(OBJECT_STORE_NAME, restaurant)
         .then(() => {
-          successMsg = `Successfully added "${restaurant.name}" to Favourited Restaurant`;
+          successMsg = `Successfully added "${restaurant.name}" to Favorited Restaurant`;
           resolved({ restaurantId: restaurant.id, successMsg });
         })
         .catch(() => {
@@ -59,7 +59,7 @@ const addFavouriteRestaurant = (restaurant) => {
   return promise;
 };
 
-const deleteFavouriteRestaurant = (restaurantId) => {
+const deleteFavoriteRestaurant = (restaurantId) => {
   const promise = new Promise((resolved) => {
     indexedDB.then((db) => {
       db.delete(OBJECT_STORE_NAME, restaurantId).then((value) => {
@@ -72,8 +72,8 @@ const deleteFavouriteRestaurant = (restaurantId) => {
 };
 
 export {
-  getFavouriteRestaurant,
-  getFavouriteRestaurants,
-  addFavouriteRestaurant,
-  deleteFavouriteRestaurant,
+  getFavoriteRestaurant,
+  getFavoriteRestaurants,
+  addFavoriteRestaurant,
+  deleteFavoriteRestaurant,
 };

@@ -1,8 +1,8 @@
 import { SVG_NAMESPACE } from '../../utils/config';
 import {
-  addFavouriteRestaurant,
-  deleteFavouriteRestaurant,
-  getFavouriteRestaurant,
+  addFavoriteRestaurant,
+  deleteFavoriteRestaurant,
+  getFavoriteRestaurant,
 } from '../../utils/indexedDB';
 
 const HeartFillIcon = () => {
@@ -35,57 +35,57 @@ const HeartUnfillIcon = () => {
   return heartUnfillSvg;
 };
 
-const appendHeartFill = (favouriteButton) => {
+const appendHeartFill = (favoriteButton) => {
   const heartFillIcon = HeartFillIcon();
-  favouriteButton.appendChild(heartFillIcon);
-  favouriteButton.insertAdjacentText('beforeend', 'Remove from Favourite');
+  favoriteButton.appendChild(heartFillIcon);
+  favoriteButton.insertAdjacentText('beforeend', 'Remove from Favorite');
 };
 
-const appendHeartUnfill = (favouriteButton) => {
+const appendHeartUnfill = (favoriteButton) => {
   const heartUnfillIcon = HeartUnfillIcon();
-  favouriteButton.appendChild(heartUnfillIcon);
-  favouriteButton.insertAdjacentText('beforeend', 'Add to Favourite');
+  favoriteButton.appendChild(heartUnfillIcon);
+  favoriteButton.insertAdjacentText('beforeend', 'Add to Favorite');
 };
 
-const favouriteButtonFunctionalities = (favouriteButton, restaurant) => {
-  getFavouriteRestaurant(restaurant.id)
+const removeFavoriteButtonChild = (favoriteButton) => {
+  while (favoriteButton.firstChild) {
+    favoriteButton.removeChild(favoriteButton.firstChild);
+  }
+};
+
+const favoriteButtonFunctionalities = (favoriteButton, restaurant) => {
+  getFavoriteRestaurant(restaurant.id)
     .then(() => {
-      appendHeartFill(favouriteButton);
+      appendHeartFill(favoriteButton);
     })
     .catch(() => {
-      appendHeartUnfill(favouriteButton);
+      appendHeartUnfill(favoriteButton);
     });
 
-  favouriteButton.addEventListener('click', () => {
-    // Remove all its child if any
-
-    getFavouriteRestaurant(restaurant.id)
+  favoriteButton.addEventListener('click', () => {
+    getFavoriteRestaurant(restaurant.id)
       .then(() => {
-        deleteFavouriteRestaurant(restaurant.id).then(() => {
-          while (favouriteButton.firstChild) {
-            favouriteButton.removeChild(favouriteButton.firstChild);
-          }
-          appendHeartUnfill(favouriteButton);
+        deleteFavoriteRestaurant(restaurant.id).then(() => {
+          removeFavoriteButtonChild(favoriteButton);
+          appendHeartUnfill(favoriteButton);
         });
       })
       .catch(() => {
-        addFavouriteRestaurant(restaurant).then(() => {
-          while (favouriteButton.firstChild) {
-            favouriteButton.removeChild(favouriteButton.firstChild);
-          }
-          appendHeartFill(favouriteButton);
+        addFavoriteRestaurant(restaurant).then(() => {
+          removeFavoriteButtonChild(favoriteButton);
+          appendHeartFill(favoriteButton);
         });
       });
   });
 };
 
-const FavouriteButton = (restaurant) => {
-  const favouriteButton = document.createElement('button');
-  favouriteButton.setAttribute('type', 'button');
-  favouriteButton.setAttribute('class', 'favourite-button');
+const FavoriteButton = (restaurant) => {
+  const favoriteButton = document.createElement('button');
+  favoriteButton.setAttribute('type', 'button');
+  favoriteButton.setAttribute('class', 'favorite-button');
 
-  favouriteButtonFunctionalities(favouriteButton, restaurant);
-  return favouriteButton;
+  favoriteButtonFunctionalities(favoriteButton, restaurant);
+  return favoriteButton;
 };
 
-export { FavouriteButton };
+export { FavoriteButton };

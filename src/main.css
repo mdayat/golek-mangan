@@ -374,8 +374,8 @@ nav {
   line-height: normal;
 }
 
-/* Favourite Button */
-.favourite-button {
+/* Favorite Button */
+.favorite-button {
   border: none;
   display: flex;
   justify-content: center;
@@ -389,7 +389,7 @@ nav {
   padding: 0 16px;
   margin: 80px auto 0;
 }
-.favourite-button svg {
+.favorite-button svg {
   width: 24px;
   height: 24px;
   fill: var(--white);

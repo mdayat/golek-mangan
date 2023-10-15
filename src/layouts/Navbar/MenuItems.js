@@ -10,8 +10,8 @@ const MenuItems = () => {
       menuItemAnchor.textContent = 'Home';
       menuItem.appendChild(menuItemAnchor);
     } else if (index === 2) {
-      menuItemAnchor.setAttribute('href', '#favourite');
-      menuItemAnchor.textContent = 'Favourite';
+      menuItemAnchor.setAttribute('href', '#favorite');
+      menuItemAnchor.textContent = 'Favorite';
       menuItem.appendChild(menuItemAnchor);
     } else {
       menuItemAnchor.setAttribute('href', 'https://github.com/mdayat');
