@@ -1,47 +1,45 @@
 import { API_ENDPOINT } from './config';
 
-const getRestaurants = (loading, callback) => {
-  let restaurants = null;
-  loading.show();
+const getRestaurants = (loading) => {
+  const promise = new Promise((resolved, rejected) => {
+    loading.show();
 
-  setTimeout(() => {
     fetch(`${API_ENDPOINT}list`, { method: 'GET' })
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {
-          callback(restaurants, data.error);
-          return;
+          rejected(data);
+        } else {
+          resolved(data.restaurants);
         }
-
-        restaurants = data.restaurants;
-        callback(restaurants, data.error);
       })
       .finally(() => {
         loading.remove();
       });
-  }, 500);
+  });
+
+  return promise;
 };
 
-const getRestaurantDetails = (restaurantId, loading, callback) => {
-  let restaurant = null;
-  loading.show();
+const getRestaurantDetails = (restaurantId, loading) => {
+  const promise = new Promise((resolved, rejected) => {
+    loading.show();
 
-  setTimeout(() => {
-    fetch(`${API_ENDPOINT}/detail/${restaurantId}`, { method: 'GET' })
+    fetch(`${API_ENDPOINT}detail/${restaurantId}`, { method: 'GET' })
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {
-          callback(restaurant, data.error);
-          return;
+          rejected(data);
+        } else {
+          resolved(data.restaurant);
         }
-
-        restaurant = data.restaurant;
-        callback(restaurant, data.error);
       })
       .finally(() => {
         loading.remove();
       });
-  }, 500);
+  });
+
+  return promise;
 };
 
 export { getRestaurants, getRestaurantDetails };

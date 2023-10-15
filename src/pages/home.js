@@ -6,21 +6,22 @@ import { getRestaurants } from '../utils/restaurant';
 import { EmptyRestaurant } from '../components/restaurant/Empty';
 
 const handleHomeFunctionalities = (mainContent) => {
-  const restaurantsContainer = mainContent.getElementsByClassName('restaurants-container')[0];
+  const restaurantsContainer = mainContent.getElementsByClassName(
+    'restaurants-container',
+  )[0];
 
-  getRestaurants(Loading(restaurantsContainer), (restaurants, isError) => {
-    if (restaurants === null || isError) {
+  getRestaurants(Loading(restaurantsContainer))
+    .then((restaurants) => {
+      restaurants.forEach((restaurant) => {
+        const restaurantCard = document.createElement('restaurant-card');
+        restaurantCard.restaurant = restaurant;
+        restaurantsContainer.appendChild(restaurantCard);
+      });
+    })
+    .catch(() => {
       const emptyRestaurant = EmptyRestaurant();
       restaurantsContainer.appendChild(emptyRestaurant);
-      return;
-    }
-
-    restaurants.forEach((restaurant) => {
-      const restaurantCard = document.createElement('restaurant-card');
-      restaurantCard.restaurant = restaurant;
-      restaurantsContainer.appendChild(restaurantCard);
     });
-  });
 };
 
 const Home = () => {

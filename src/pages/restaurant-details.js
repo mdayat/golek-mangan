@@ -6,22 +6,14 @@ import { PageNotFound } from '../components/PageNotFound';
 import { getRestaurantDetails } from '../utils/restaurant';
 import { parseActiveUrl } from '../utils/urlParser';
 
-import { FavouriteButton } from '../components/restaurant/FavouriteButton';
+import { FavoriteButton } from '../components/restaurant/FavoriteButton';
 
 const restaurantDetailsPageFunctionalities = (mainContent) => {
   const url = parseActiveUrl(false);
   const titleElement = document.getElementsByTagName('title')[0];
 
-  getRestaurantDetails(
-    url.dynamicPath,
-    Loading(mainContent),
-    (restaurant, isError) => {
-      if (restaurant === null || isError) {
-        mainContent.appendChild(PageNotFound());
-        titleElement.textContent = 'Page Not Found';
-        return;
-      }
-
+  getRestaurantDetails(url.dynamicPath, Loading(mainContent))
+    .then((restaurant) => {
       titleElement.textContent = `Restaurant - ${restaurant.name}`;
 
       const restaurantHeadline = RestaurantHeadline(
@@ -45,10 +37,13 @@ const restaurantDetailsPageFunctionalities = (mainContent) => {
       const reviewsElement = RestaurantReviews(restaurant.customerReviews);
       detailAndReviewContainer.appendChild(reviewsElement);
 
-      const favouriteButton = FavouriteButton(restaurant);
+      const favouriteButton = FavoriteButton(restaurant);
       mainContent.appendChild(favouriteButton);
-    },
-  );
+    })
+    .catch(() => {
+      mainContent.appendChild(PageNotFound());
+      titleElement.textContent = 'Page Not Found';
+    });
 };
 
 const Details = () => {
