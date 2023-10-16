@@ -1,16 +1,18 @@
 import { API_ENDPOINT } from './config';
 
 const getRestaurants = (loading) => {
-  const promise = new Promise((resolved, rejected) => {
+  const promise = new Promise((resolve, reject) => {
     loading.show();
 
     fetch(`${API_ENDPOINT}list`, { method: 'GET' })
-      .then((response) => response.json())
+      .then((response) => {
+        return response.json();
+      })
       .then((data) => {
         if (data.error) {
-          rejected(data);
+          reject(data);
         } else {
-          resolved(data.restaurants);
+          resolve(data.restaurants);
         }
       })
       .finally(() => {
@@ -22,16 +24,18 @@ const getRestaurants = (loading) => {
 };
 
 const getRestaurantDetails = (restaurantId, loading) => {
-  const promise = new Promise((resolved, rejected) => {
+  const promise = new Promise((resolve, reject) => {
     loading.show();
 
     fetch(`${API_ENDPOINT}detail/${restaurantId}`, { method: 'GET' })
-      .then((response) => response.json())
+      .then((response) => {
+        return response.json();
+      })
       .then((data) => {
         if (data.error) {
-          rejected(data);
+          reject(data);
         } else {
-          resolved(data.restaurant);
+          resolve(data.restaurant);
         }
       })
       .finally(() => {

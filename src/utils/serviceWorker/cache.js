@@ -10,60 +10,65 @@ const assetsToCache = [
   './icons/icon-192x192.png',
   './icons/icon-512x512.png',
   './favicon.ico',
-  'apple-touch-icon.png',
-  'hero-image.jpg',
-  'hangout-image.jpg',
+  './apple-touch-icon.png',
+  './hero-image.jpg',
+  './hangout-image.jpg',
   './index.html',
   './app.webmanifest',
   './main.js',
   './serviceWorker.js',
 ];
 
-const preCache = async () => {
-  const cache = await caches.open(CACHE_NAME);
-  await cache.addAll(assetsToCache);
+const precaching = () => {
+  const promise = caches.open(CACHE_NAME).then((cache) => {
+    cache.addAll(assetsToCache);
+  });
+
+  return promise;
 };
 
-const deleteOldCache = async () => {
-  const cacheNames = await caches.keys();
+const deleteInvalidCaches = () => {
+  const promise = caches.keys().then((cacheNames) => {
+    const invalidCaches = [];
 
-  for (let index = 0; index < cacheNames.length; index++) {
-    if (cacheNames[index] !== CACHE_NAME) {
-      caches.delete(cacheNames[index]);
+    for (let i = 0; i < cacheNames.length; i++) {
+      if (cacheNames[i] !== CACHE_NAME) {
+        invalidCaches.push(cacheNames[i]);
+      }
     }
-  }
+
+    return Promise.all(
+      invalidCaches.map((cacheName) => {
+        return caches.delete(cacheName);
+      }),
+    );
+  });
+
+  return promise;
 };
 
-const revalidateCache = async (request) => {
-  const cachedResponse = await caches.match(request);
-
-  if (cachedResponse) {
-    await fetchRequest(request);
-    return cachedResponse;
-  }
-
-  return fetchRequest(request);
-};
-
-const addCache = async (request) => {
-  const cache = await caches.open(CACHE_NAME);
-  await cache.add(request);
-};
-
-const fetchRequest = async (request) => {
-  const response = await fetch(request);
-
-  if (response.status !== 200) {
+const fetchRequest = (request, cache) => {
+  const promise = fetch(request).then((response) => {
+    cache.put(request, response.clone());
     return response;
-  }
+  });
 
-  await addCache(request);
-  return response;
+  return promise;
 };
 
-export {
-  revalidateCache,
-  preCache,
-  deleteOldCache,
-  assetsToCache
+const revalidateCache = (request) => {
+  const promise = caches.open(CACHE_NAME).then((cache) => {
+    return cache.match(request).then((cachedResponse) => {
+      if (cachedResponse !== undefined) {
+        fetchRequest(request, cache);
+        return cachedResponse;
+      }
+
+      return fetchRequest(request, cache);
+    });
+  });
+
+  return promise;
 };
+
+export { revalidateCache, precaching, deleteInvalidCaches };

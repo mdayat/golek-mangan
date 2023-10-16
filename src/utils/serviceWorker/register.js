@@ -1,9 +1,7 @@
 const registerServiceWorker = () => {
-  if (!('serviceWorker' in navigator)) {
-    return;
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./serviceWorker.js');
   }
-
-  navigator.serviceWorker.register('./serviceWorker.js').then();
 };
 
 export { registerServiceWorker };

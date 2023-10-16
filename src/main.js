@@ -25,5 +25,5 @@ window.addEventListener('load', () => {
   Layouts();
   page();
 
-  // registerServiceWorker();
+  registerServiceWorker();
 });

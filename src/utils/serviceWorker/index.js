@@ -1,20 +1,19 @@
-import { deleteOldCache, preCache, revalidateCache } from './cache';
+import { deleteInvalidCaches, precaching, revalidateCache } from './cache';
 
-// eslint-disable-next-line no-restricted-globals
 self.addEventListener('install', (event) => {
-  event.waitUntil(preCache());
+  event.waitUntil(precaching());
 });
 
-// eslint-disable-next-line no-restricted-globals
 self.addEventListener('activate', (event) => {
-  event.waitUntil(deleteOldCache());
+  event.waitUntil(deleteInvalidCaches());
 });
 
-// eslint-disable-next-line no-restricted-globals
 self.addEventListener('fetch', (event) => {
-  if (event.request.destination === 'image') {
-    event.respondWith(revalidateCache(event.request.url));
-  } else {
-    event.respondWith(revalidateCache(event.request));
+  if (event.request.method === 'GET') {
+    if (event.request.destination === 'image') {
+      event.respondWith(revalidateCache(event.request.url));
+    } else {
+      event.respondWith(revalidateCache(event.request));
+    }
   }
 });
