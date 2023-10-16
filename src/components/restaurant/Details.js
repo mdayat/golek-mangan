@@ -24,7 +24,11 @@ const RestaurantDetails = (address, menu) => {
   detailList.appendChild(secondListElement);
 
   const restaurantFoods = document.createElement('span');
-  restaurantFoods.textContent = menu.foods.map(({ name }) => name).join(', ');
+  restaurantFoods.textContent = menu.foods
+    .map(({ name }) => {
+      return name;
+    })
+    .join(', ');
   secondListElement.appendChild(restaurantFoods);
 
   const thirdListElement = document.createElement('li');
@@ -33,7 +37,11 @@ const RestaurantDetails = (address, menu) => {
   detailList.appendChild(thirdListElement);
 
   const restaurantDrinks = document.createElement('span');
-  restaurantDrinks.textContent = menu.drinks.map(({ name }) => name).join(', ');
+  restaurantDrinks.textContent = menu.drinks
+    .map(({ name }) => {
+      return name;
+    })
+    .join(', ');
   thirdListElement.appendChild(restaurantDrinks);
 
   return detailsContainer;

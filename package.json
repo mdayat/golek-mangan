@@ -7,7 +7,7 @@
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack serve --config webpack.dev.js",
     "serve": "http-server dist -p 3000",
-    "check-lint": "pnpm eslint --ext src/**/*.js"
+    "check-lint": "eslint './src/**/*.js'"
   },
   "author": "Muhammad Nur Hidayat",
   "license": "ISC",
