@@ -3,7 +3,7 @@ const focusTrap = (focusTrapContainer, focusableElements) => {
   const lastFocusableEl = focusableElements[focusableElements.length - 1];
 
   const handleFocusTrap = (event) => {
-    const isTabPressed = event.key === 'Tab';
+    const isTabPressed = event.key === "Tab";
     if (!isTabPressed) return;
 
     if (event.shiftKey) {
@@ -20,11 +20,11 @@ const focusTrap = (focusTrapContainer, focusableElements) => {
   return {
     addFocusTrap: () => {
       firstFocusableEl?.focus();
-      focusTrapContainer.addEventListener('keydown', handleFocusTrap);
+      focusTrapContainer.addEventListener("keydown", handleFocusTrap);
     },
 
     removeFocusTrap: () => {
-      focusTrapContainer.removeEventListener('keydown', handleFocusTrap);
+      focusTrapContainer.removeEventListener("keydown", handleFocusTrap);
     },
   };
 };

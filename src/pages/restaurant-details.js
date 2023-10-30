@@ -1,16 +1,16 @@
-import { RestaurantHeadline } from '../components/restaurant/Headline';
-import { RestaurantDetails } from '../components/restaurant/Details';
-import { RestaurantReviews } from '../components/restaurant/Reviews';
-import { Loading } from '../components/Loading';
-import { PageNotFound } from '../components/PageNotFound';
-import { getRestaurantDetails } from '../utils/restaurant';
-import { parseActiveUrl } from '../utils/urlParser';
+import { RestaurantHeadline } from "../components/restaurant/Headline";
+import { RestaurantDetails } from "../components/restaurant/Details";
+import { RestaurantReviews } from "../components/restaurant/Reviews";
+import { Loading } from "../components/Loading";
+import { PageNotFound } from "../components/PageNotFound";
+import { getRestaurantDetails } from "../utils/restaurant";
+import { parseActiveUrl } from "../utils/urlParser";
 
-import { FavoriteButton } from '../components/restaurant/FavoriteButton';
+import { FavoriteButton } from "../components/restaurant/FavoriteButton";
 
 const restaurantDetailsPageFunctionalities = (mainContent) => {
   const url = parseActiveUrl(false);
-  const titleElement = document.getElementsByTagName('title')[0];
+  const titleElement = document.getElementsByTagName("title")[0];
 
   getRestaurantDetails(url.dynamicPath, Loading(mainContent))
     .then((restaurant) => {
@@ -23,8 +23,8 @@ const restaurantDetailsPageFunctionalities = (mainContent) => {
       );
       mainContent.appendChild(restaurantHeadline);
 
-      const detailAndReviewContainer = document.createElement('div');
-      detailAndReviewContainer.setAttribute('class', 'detail-review-container');
+      const detailAndReviewContainer = document.createElement("div");
+      detailAndReviewContainer.setAttribute("class", "detail-review-container");
       mainContent.appendChild(detailAndReviewContainer);
 
       const restaurantAddress = `${restaurant.address}, ${restaurant.city}`;
@@ -42,12 +42,12 @@ const restaurantDetailsPageFunctionalities = (mainContent) => {
     })
     .catch(() => {
       mainContent.appendChild(PageNotFound());
-      titleElement.textContent = 'Page Not Found';
+      titleElement.textContent = "Page Not Found";
     });
 };
 
 const Details = () => {
-  const mainContent = document.getElementsByTagName('main')[0];
+  const mainContent = document.getElementsByTagName("main")[0];
   restaurantDetailsPageFunctionalities(mainContent);
 };
 

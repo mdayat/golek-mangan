@@ -1,5 +1,5 @@
 const splitUrl = (url) => {
-  const splittedUrl = url.split('/');
+  const splittedUrl = url.split("/");
   return {
     path: splittedUrl[1],
     dynamicPath: splittedUrl[2],
@@ -7,15 +7,15 @@ const splitUrl = (url) => {
 };
 
 const combineUrl = (splittedUrl) => {
-  const path = splittedUrl.path ? `/${splittedUrl.path}` : '/';
-  const dynamicPath = splittedUrl.dynamicPath ? '/:id' : '';
+  const path = splittedUrl.path ? `/${splittedUrl.path}` : "/";
+  const dynamicPath = splittedUrl.dynamicPath ? "/:id" : "";
   return path + dynamicPath;
 };
 
 const parseActiveUrl = (withCombiner) => {
-  let url = window.location.href.split('#')[1];
-  if (url === undefined || url === '') {
-    url = '/';
+  let url = window.location.href.split("#")[1];
+  if (url === undefined || url === "") {
+    url = "/";
   } else {
     url = `/${url}`;
   }

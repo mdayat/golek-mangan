@@ -1,6 +1,6 @@
 const Loading = (loadingContainer) => {
-  const loading = document.createElement('div');
-  loading.setAttribute('class', 'loading');
+  const loading = document.createElement("div");
+  loading.setAttribute("class", "loading");
 
   return {
     show: () => {

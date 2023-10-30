@@ -1,14 +1,14 @@
-import { openDB } from 'idb';
-import { DATABASE_NAME, DATABASE_VERSION, OBJECT_STORE_NAME } from './config';
+import { openDB } from "idb";
+import { DATABASE_NAME, DATABASE_VERSION, OBJECT_STORE_NAME } from "./config";
 
 const indexedDB = openDB(DATABASE_NAME, DATABASE_VERSION, {
   upgrade(database) {
-    database.createObjectStore(OBJECT_STORE_NAME, { keyPath: 'id' });
+    database.createObjectStore(OBJECT_STORE_NAME, { keyPath: "id" });
   },
 });
 
 const getFavoriteRestaurant = (restaurantId) => {
-  let errMsg = '';
+  let errMsg = "";
 
   const promise = new Promise((resolve, reject) => {
     indexedDB.then((db) => {
@@ -39,8 +39,8 @@ const getFavoriteRestaurants = () => {
 };
 
 const addFavoriteRestaurant = (restaurant) => {
-  let successMsg = '';
-  let errMsg = '';
+  let successMsg = "";
+  let errMsg = "";
 
   const promise = new Promise((resolve, reject) => {
     indexedDB.then((db) => {

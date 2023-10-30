@@ -1,6 +1,6 @@
 /* Generic */
 * {
-  --source-sans: 'Source Sans 3', sans-serif;
+  --source-sans: "Source Sans 3", sans-serif;
   --green: #16a34a;
   --dark-blue: #101820;
   --white: #f4f4f5;
@@ -105,7 +105,7 @@ nav {
   object-position: center;
 }
 .hero::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;

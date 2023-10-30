@@ -1,18 +1,18 @@
-import { focusTrap } from '../../utils/focusTrap';
+import { focusTrap } from "../../utils/focusTrap";
 
 const openNavMenu = (navMenu) => {
-  navMenu.classList.add('open-nav-menu');
+  navMenu.classList.add("open-nav-menu");
 };
 
 const closeNavMenu = (navMenu) => {
-  navMenu.classList.remove('open-nav-menu');
+  navMenu.classList.remove("open-nav-menu");
 };
 
 const navbarServices = (navElement) => {
-  const navMenu = navElement.getElementsByClassName('nav-menu')[0];
-  const hamburgerMenu = navElement.getElementsByClassName('hamburger-menu')[0];
+  const navMenu = navElement.getElementsByClassName("nav-menu")[0];
+  const hamburgerMenu = navElement.getElementsByClassName("hamburger-menu")[0];
 
-  const menuItems = navMenu.getElementsByTagName('a');
+  const menuItems = navMenu.getElementsByTagName("a");
   const focusableElements = [hamburgerMenu, ...menuItems];
   const focusTrapContainer = navElement;
 
@@ -22,7 +22,7 @@ const navbarServices = (navElement) => {
   );
 
   const pressNavMenuItem = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       event.stopPropagation();
 
       removeFocusTrap();
@@ -54,7 +54,7 @@ const navbarServices = (navElement) => {
   // Close menu when viewport is >= 1024
   const resizeWindow = () => {
     if (window.innerWidth < 1024) return;
-    const isMenuOpened = navMenu.classList.value.includes('open-nav-menu');
+    const isMenuOpened = navMenu.classList.value.includes("open-nav-menu");
 
     if (isMenuOpened) {
       removeFocusTrap();
@@ -62,9 +62,9 @@ const navbarServices = (navElement) => {
     }
   };
 
-  hamburgerMenu.addEventListener('click', (event) => {
+  hamburgerMenu.addEventListener("click", (event) => {
     event.stopPropagation();
-    const isMenuOpened = navMenu.classList.value.includes('open-nav-menu');
+    const isMenuOpened = navMenu.classList.value.includes("open-nav-menu");
 
     if (isMenuOpened) {
       removeFocusTrap();
@@ -74,11 +74,11 @@ const navbarServices = (navElement) => {
       addFocusTrap();
       hamburgerMenu.focus();
 
-      window.addEventListener('click', clickOutside);
-      window.addEventListener('resize', resizeWindow);
+      window.addEventListener("click", clickOutside);
+      window.addEventListener("resize", resizeWindow);
       for (let i = 0; i < menuItems.length; i++) {
-        menuItems[i].addEventListener('click', clickNavMenuItem);
-        menuItems[i].addEventListener('keydown', pressNavMenuItem);
+        menuItems[i].addEventListener("click", clickNavMenuItem);
+        menuItems[i].addEventListener("keydown", pressNavMenuItem);
       }
     }
   });

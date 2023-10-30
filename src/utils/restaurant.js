@@ -1,10 +1,10 @@
-import { API_ENDPOINT } from './config';
+import { API_ENDPOINT } from "./config";
 
 const getRestaurants = (loading) => {
   const promise = new Promise((resolve, reject) => {
     loading.show();
 
-    fetch(`${API_ENDPOINT}list`, { method: 'GET' })
+    fetch(`${API_ENDPOINT}list`, { method: "GET" })
       .then((response) => {
         return response.json();
       })
@@ -27,7 +27,7 @@ const getRestaurantDetails = (restaurantId, loading) => {
   const promise = new Promise((resolve, reject) => {
     loading.show();
 
-    fetch(`${API_ENDPOINT}detail/${restaurantId}`, { method: 'GET' })
+    fetch(`${API_ENDPOINT}detail/${restaurantId}`, { method: "GET" })
       .then((response) => {
         return response.json();
       })
