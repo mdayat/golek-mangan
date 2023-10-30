@@ -21,8 +21,8 @@
     // I don't think the "++" operator is bad in all cases.
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
 
-    // I agree with single quote rules, but i don't think template literals need to be prohibited
-    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    // I would prefer double quote rules, and i don't think template literals need to be prohibited
+    "quotes": ["error", "double", { "allowTemplateLiterals": true }],
 
     // Not all global variables should be restricted
     "no-restricted-globals": ["error", "event", "fdescribe"]
