@@ -6,5 +6,6 @@ export default defineConfig({
     include: ["tests/**/*.test.js"],
     watch: false,
     logHeapUsage: true,
+    setupFiles: ["fake-indexeddb/auto"],
   },
 });
