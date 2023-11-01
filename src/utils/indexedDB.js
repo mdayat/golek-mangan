@@ -8,14 +8,11 @@ const indexedDB = openDB(DATABASE_NAME, DATABASE_VERSION, {
 });
 
 const getFavoriteRestaurant = (restaurantId) => {
-  let errMsg = "";
-
-  const promise = new Promise((resolve, reject) => {
+  const promise = new Promise((resolve) => {
     indexedDB.then((db) => {
       db.get(OBJECT_STORE_NAME, restaurantId).then((favoritedRestaurant) => {
         if (favoritedRestaurant === undefined) {
-          errMsg = `There is no restaurant you are looking for`;
-          reject(errMsg);
+          resolve([]);
         } else {
           resolve(favoritedRestaurant);
         }
