@@ -7,7 +7,12 @@ const commonConfig = require("./webpack.common");
 const config = {
   mode: "production",
   devtool: "source-map",
-  plugins: [new BundleAnalyzerPlugin()],
+  plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerMode: "static",
+      openAnalyzer: false,
+    }),
+  ],
   optimization: {
     minimizer: [
       new ImageMinimizerPlugin({
