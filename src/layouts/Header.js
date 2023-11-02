@@ -1,6 +1,4 @@
 import { Navbar } from "./Navbar";
-import HeroSmallImg from "../../public/hero-small.jpg";
-import HeroMediumImg from "../../public/hero-medium.jpg";
 
 const Header = () => {
   const headerElement = document.createElement("header");
@@ -16,18 +14,18 @@ const Header = () => {
 
   const heroSmall = document.createElement("source");
   heroSmall.setAttribute("media", "(max-width: 767px)");
-  heroSmall.setAttribute("srcset", HeroSmallImg);
+  heroSmall.setAttribute("srcset", "./hero-small.jpg");
   heroSmall.setAttribute("type", "image/jpeg");
   pictureEl.appendChild(heroSmall);
 
   const heroMedium = document.createElement("source");
   heroMedium.setAttribute("media", "(min-width: 768px)");
-  heroMedium.setAttribute("srcset", HeroMediumImg);
+  heroMedium.setAttribute("srcset", "./hero-medium.jpg");
   heroMedium.setAttribute("type", "image/jpeg");
   pictureEl.appendChild(heroMedium);
 
   const imageFallback = document.createElement("img");
-  imageFallback.setAttribute("src", HeroMediumImg);
+  imageFallback.setAttribute("src", "./hero-medium.jpg");
   imageFallback.setAttribute("alt", "");
   pictureEl.appendChild(imageFallback);
 
