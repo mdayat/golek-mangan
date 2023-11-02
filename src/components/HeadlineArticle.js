@@ -16,7 +16,7 @@ const HeadlineArticle = () => {
   divElement.appendChild(headlineDescription);
 
   const headlineImage = document.createElement("img");
-  headlineImage.setAttribute("src", "./hangout-image.jpg");
+  headlineImage.setAttribute("src", "./hangout-large.jpg");
   headlineImage.setAttribute("alt", "Hangout with friends");
   headlineImage.setAttribute("class", "headline-image");
   headline.appendChild(headlineImage);
