@@ -4,10 +4,10 @@ import {
   getFavoriteRestaurant,
 } from "../src/utils/indexedDB";
 
-describe("Liking a restaurant", () => {
+describe("Like a restaurant", () => {
   test("should be able to like a restaurant", async () => {
     const { restaurantId } = await addFavoriteRestaurant({ id: 1 });
-    const favoriteRestaurant = await getFavoriteRestaurant(restaurantId);
-    expect(favoriteRestaurant.id).toEqual(1);
+    const { restaurant } = await getFavoriteRestaurant(restaurantId);
+    expect(restaurant.id).toEqual(1);
   });
 });
