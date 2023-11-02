@@ -54,28 +54,28 @@ const removeFavoriteButtonChild = (favoriteButton) => {
 };
 
 const favoriteButtonFunctionalities = (favoriteButton, restaurant) => {
-  getFavoriteRestaurant(restaurant.id)
-    .then(() => {
-      appendHeartFill(favoriteButton);
-    })
-    .catch(() => {
+  getFavoriteRestaurant(restaurant.id).then(({ isError }) => {
+    if (isError) {
       appendHeartUnfill(favoriteButton);
-    });
+    } else {
+      appendHeartFill(favoriteButton);
+    }
+  });
 
   favoriteButton.addEventListener("click", () => {
-    getFavoriteRestaurant(restaurant.id)
-      .then(() => {
-        deleteFavoriteRestaurant(restaurant.id).then(() => {
-          removeFavoriteButtonChild(favoriteButton);
-          appendHeartUnfill(favoriteButton);
-        });
-      })
-      .catch(() => {
+    getFavoriteRestaurant(restaurant.id).then(({ isError }) => {
+      if (isError) {
         addFavoriteRestaurant(restaurant).then(() => {
           removeFavoriteButtonChild(favoriteButton);
           appendHeartFill(favoriteButton);
         });
-      });
+      } else {
+        deleteFavoriteRestaurant(restaurant.id).then(() => {
+          removeFavoriteButtonChild(favoriteButton);
+          appendHeartUnfill(favoriteButton);
+        });
+      }
+    });
   });
 };
 

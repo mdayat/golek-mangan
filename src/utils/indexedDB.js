@@ -9,12 +9,19 @@ const indexedDB = openDB(DATABASE_NAME, DATABASE_VERSION, {
 
 const getFavoriteRestaurant = (restaurantId) => {
   const promise = new Promise((resolve) => {
+    const res = {
+      restaurant: null,
+      isError: false,
+    };
+
     indexedDB.then((db) => {
       db.get(OBJECT_STORE_NAME, restaurantId).then((favoritedRestaurant) => {
         if (favoritedRestaurant === undefined) {
-          resolve([]);
+          res.isError = true;
+          resolve(res);
         } else {
-          resolve(favoritedRestaurant);
+          res.restaurant = favoritedRestaurant;
+          resolve(res);
         }
       });
     });
