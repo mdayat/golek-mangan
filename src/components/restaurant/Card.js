@@ -18,6 +18,7 @@ class RestaurantCard extends HTMLElement {
     );
     restaurantImage.setAttribute("alt", this.#restaurant.name);
     restaurantImage.setAttribute("class", "restaurant-image");
+    restaurantImage.setAttribute("loading", "lazy");
     this.appendChild(restaurantImage);
 
     const divElement = document.createElement("div");
