@@ -8,6 +8,8 @@
     "dev": "webpack serve --config webpack.dev.js",
     "serve": "http-server dist -p 3000",
     "test": "vitest",
+    "e2e-test": "pnpm exec playwright test",
+    "e2e-report": "pnpm exec playwright show-report",
     "check-lint": "pnpm exec eslint './src/**/*.js'",
     "fix-lint": "pnpm exec eslint --fix './src/**/*.js'"
   },
