@@ -6,6 +6,7 @@ const commonConfig = require("./webpack.common");
 const config = {
   mode: "development",
   devtool: "inline-source-map",
+
   devServer: {
     port: 3000,
     hot: true,

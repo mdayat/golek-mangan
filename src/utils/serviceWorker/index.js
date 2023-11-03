@@ -1,19 +1,32 @@
-import { deleteInvalidCaches, precaching, revalidateCache } from "./cache";
+/* eslint-disable no-underscore-dangle */
+import { precacheAndRoute } from "workbox-precaching";
+import { registerRoute, Route } from "workbox-routing";
+import { StaleWhileRevalidate } from "workbox-strategies";
+import { API_ENDPOINT, CACHE_NAME, IMAGE_ENDPOINT } from "../config";
 
-self.addEventListener("install", (event) => {
-  event.waitUntil(precaching());
-});
+precacheAndRoute(self.__WB_MANIFEST);
 
-self.addEventListener("activate", (event) => {
-  event.waitUntil(deleteInvalidCaches());
-});
+const restaurants = new Route(
+  ({ url }) => {
+    return url.href.startsWith(API_ENDPOINT);
+  },
+  new StaleWhileRevalidate({
+    cacheName: CACHE_NAME,
+  }),
+);
 
-self.addEventListener("fetch", (event) => {
-  if (event.request.method === "GET") {
-    if (event.request.destination === "image") {
-      event.respondWith(revalidateCache(event.request.url));
-    } else {
-      event.respondWith(revalidateCache(event.request));
-    }
-  }
+const restaurantImages = new Route(
+  ({ url }) => {
+    return url.href.startsWith(IMAGE_ENDPOINT);
+  },
+  new StaleWhileRevalidate({
+    cacheName: CACHE_NAME,
+  }),
+);
+
+registerRoute(restaurants);
+registerRoute(restaurantImages);
+
+self.addEventListener("install", () => {
+  self.skipWaiting();
 });

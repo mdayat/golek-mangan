@@ -1,19 +1,19 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require("path");
-// eslint-disable-next-line import/no-extraneous-dependencies
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-// eslint-disable-next-line import/no-extraneous-dependencies
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const config = {
   entry: {
     main: path.resolve(__dirname, "src/main.js"),
-    serviceWorker: path.resolve(__dirname, "src/utils/serviceWorker/index.js"),
   },
+
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
     clean: true,
   },
+
   module: {
     rules: [
       {
@@ -26,6 +26,7 @@ const config = {
       },
     ],
   },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.html"),
@@ -40,6 +41,7 @@ const config = {
       ],
     }),
   ],
+
   resolve: {
     extensions: [".js"],
   },

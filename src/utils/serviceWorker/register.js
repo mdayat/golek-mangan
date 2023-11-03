@@ -1,6 +1,9 @@
+import { Workbox } from "workbox-window";
+
 const registerServiceWorker = () => {
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./serviceWorker.js");
+    const wb = new Workbox("./serviceWorker.js");
+    wb.register();
   }
 };
 
