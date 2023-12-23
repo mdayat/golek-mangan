@@ -1,11 +1,11 @@
-## What
+A full-fledged web app that implements web dev best practices to fulfill [Dicoding Submission](https://www.dicoding.com/academies/219/), with the following criteria:
+1. Responsive: accessible on a variety of devices
+2. Accessible: (1) can be navigated using the keyboard, (2) implements semantic HTML, and (3) [text optimization](https://www.smashingmagazine.com/2014/09/balancing-line-length-font-size-responsive-web-design/) and [touch targets](https://web.dev/articles/accessible-tap-targets)
+3. Displays a list of restaurants from the [Dicoding API](https://restaurant-api.dicoding.dev/#/?id=dicoding-restaurant-api)
+4. Simple CRUD using [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
+5. [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps): (1) accessible offline, and (2) downloadable
+6. Testing: (1) unit testing, (2) integration testing, and (3) e2e testing
+7. Image optimization: (1) image compression, (2) responsiveness, and (3) [lazy loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading)
+8. Bundle optimization: (1) bundle analysis, (2) minify JS and CSS, and (3) [code splitting](https://developer.mozilla.org/en-US/docs/Glossary/Code_splitting).
 
-**Golek Mangan** is an application that curates the best restaurants in Indonesia. The process of selecting, assessing, and including a restaurant in the list of the best restaurants is carried out by our expert teams so that it can be ensured that it meets the standards.
-
-## Tech Stack
-
-For development purposes, I chose [TypeScript](https://www.typescriptlang.org/) over JavaScript as the main language because it can save my life from "unwanted" errors. As for the bundler, I chose [Webpack](https://webpack.js.org/) because it is one of the requirements of this project. To keep me in check and follow the best practices, I decided to use [ESLint](https://eslint.org/) along with [Husky](https://typicode.github.io/husky/getting-started.html).
-
-## More
-
-- The purpose of this project is to fulfill the [Dicoding Submission](https://www.dicoding.com/academies/219/).
+This app will display a list of restaurants along with a detailed description of the restaurant. In addition, you can like and dislike a restaurant so this app can save a list of restaurants that you like.
